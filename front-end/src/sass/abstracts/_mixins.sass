@@ -1,0 +1,33 @@
+@mixin flex-column
+    display: flex
+    flex-direction: column
+
+@mixin centerVerticalAndHorizonal
+    justify-content: center
+    align-items: center
+
+@mixin text-shadow-black
+    text-shadow: 1px 1px black
+
+@mixin font-oswald
+    font-family: 'Oswald', sans-serif
+    color: white
+    @include text-shadow-black
+    
+@mixin buttons
+    padding: 1rem 2rem
+    border-radius: 1rem
+    border: none
+    cursor: pointer
+    font-weight: bold
+
+    &:active
+        background-color: white
+
+@mixin navbar-gradient
+    /* fallback for old browsers */
+    background: #f12711
+    // /* Chrome 10-25, Safari 5.1-6 */
+    background: -webkit-linear-gradient(to right, #f5af19, #f12711)
+    // /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    background: linear-gradient(to right, #f5af19, #f12711)

@@ -1,0 +1,66 @@
+[
+    {
+        "name": "Pandemic",
+        "description": "Your team of experts must prevent the world from succumbing to a viral pandemic.",
+        "price": 25,
+        "rating": 7.6,
+        "image": "/home/mentor/Atom/Portfolio/Fullstack/board-game-store/back-end/images/pandemic.jpg",
+        "inventory": 5
+    },
+    {
+        "name": "Arkham Horror",
+        "description": "Piece the clues together to stop the horrors before your sanity shatters.",
+        "price": 75,
+        "rating": 7.7,
+        "image": "/home/mentor/Atom/Portfolio/Fullstack/board-game-store/back-end/images/ArkhamHorror3rd.jpg",
+        "inventory": 5
+    },
+    {
+        "name": "Arkham Horror: The Card Game",
+        "description": "Investigate the horrors of Arkham while courting cosmic doom.",
+        "price": 30,
+        "rating": 8.2,
+        "image": "/home/mentor/Atom/Portfolio/Fullstack/board-game-store/back-end/images/ArkhamHorrorTCG.jpg",
+        "inventory": 5
+    },
+    {
+        "name": "Viticulture Essential Edition",
+        "description": "Create the most prosperous winery in Italy from the Tuscan vineyard you've inherited.",
+        "price": 60,
+        "rating": 8.0,
+        "image": "/home/mentor/Atom/Portfolio/Fullstack/board-game-store/back-end/images/Viticulture.jpg",
+        "inventory": 5
+    },
+    {
+        "name": "Betrayal at House on the Hill",
+        "description": "Explore a haunted house as a team ... until one of you turns against the rest.",
+        "price": 80,
+        "rating": 7.0,
+        "image": "/home/mentor/Atom/Portfolio/Fullstack/board-game-store/back-end/images/betrayal-at-house-on-the-hill.jpg",
+        "inventory": 5
+    },
+    {
+        "name": "Dune",
+        "description": "Wildly different factions vie for control of Arrakis through alliance and treachery.",
+        "price": 60,
+        "rating": 8.0,
+        "image": "/home/mentor/Atom/Portfolio/Fullstack/board-game-store/back-end/images/dune.jpg",
+        "inventory": 5
+    },
+    {
+        "name": "HeroQuest",
+        "description": "Explore dungeons and complete quests in this RPG-inspired fantasy adventure.",
+        "price": 120,
+        "rating": 7.2,
+        "image": "/home/mentor/Atom/Portfolio/Fullstack/board-game-store/back-end/images/heroquest.jpg",
+        "inventory": 5
+    },
+    {
+        "name": "Warhammer Quest: Blackstone Fortress",
+        "description": "Scavenge, loot and survive the Fortress, FOR THE EMPEROR... or just yourself.",
+        "price": 200,
+        "rating": 7.9,
+        "image": "/home/mentor/Atom/Portfolio/Fullstack/board-game-store/back-end/images/warhammer-quest-blackstone-fortress.jpg",
+        "inventory": 5
+    }
+]

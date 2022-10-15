@@ -1,0 +1,27 @@
+*,
+*::after,
+*::before 
+    margin: 0
+    padding: 0
+    box-sizing: inherit
+
+html
+    box-sizing: border-box
+    font-size: 62.5%
+
+body
+    /* fallback for old browsers */
+    background: #141E30
+    /* Chrome 10-25, Safari 5.1-6 */
+    background: -webkit-linear-gradient(to right, #243B55, #141E30)
+    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    background: linear-gradient(to right, #243B55, #141E30)
+
+
+a:link, a:visited, a:hover, a:active
+    text-decoration: none
+
+.container
+    min-height: 100vh
+
+    @include flex-column

@@ -1,0 +1,56 @@
+nav
+  width: 25%
+  position: fixed
+  cursor: pointer
+
+  display: flex
+  justify-content: flex-start
+  align-self: flex-start
+
+.nav-burger, .change
+  padding: 2rem
+  margin: 2rem
+  border-radius: 50%
+  border: 1px solid #f12711
+  z-index: 20
+
+.line1, .line2, .line3
+  height: .5rem
+  width: 3.5rem
+  margin: .6rem 0
+  transition: 0.4s
+  @include navbar-gradient
+
+.change .line1
+  transform: translate(0, 1.1rem) rotate(-45deg)
+
+.change .line2
+  opacity: 0
+
+.change .line3
+  transform: translate(0, -1.1rem) rotate(45deg)
+
+.nav-menu
+  height: 100vh
+  width: 100%
+  position: absolute
+  z-index: 10
+  background: #243B55
+  clip-path: polygon(0 0, 55% 0, 100% 100%, 0 100%)
+  padding: 2rem 2rem 1rem
+  display: flex
+  flex-direction: column
+  justify-content: flex-end
+  align-items: flex-start
+
+.nav-links
+  font-size: 10rem
+  @include navbar-gradient
+  background-clip: text
+  text-fill-color: transparent
+  -webkit-background-clip: text
+  -webkit-text-fill-color: transparent
+
+  &:hover
+    margin-left: 2rem
+    transition: all 0.4s ease-in-out
