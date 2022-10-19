@@ -4,6 +4,7 @@ import 'express-async-errors'
 import * as dotenv from 'dotenv'
 import fileUpload from 'express-fileupload'
 import bodyParser from 'body-parser'
+import cloudinary from 'cloudinary'
 
 dotenv.config()
 const app = express()
@@ -21,7 +22,14 @@ app.use(bodyParser.json({ limit: "30mb", extended: true }))
 app.use(bodyParser.urlencoded({ limit: "30mb", extended: true }))
 
 app.use(express.static('/public'))
-app.use(fileUpload())
+
+// file upload
+cloudinary.v2.config({
+    cloud_name: process.env.CLOUD_NAME,
+    api_key: process.env.API_KEY,
+    api_secret: process.env.API_SECRET
+})
+app.use(fileUpload({ useTempFiles: true }))
 
 // routes
 app.get('/', (req, res) => {

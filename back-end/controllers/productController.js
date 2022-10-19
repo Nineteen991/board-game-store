@@ -1,3 +1,7 @@
+import path from'path'
+import fs from 'fs'
+import cloudinary from 'cloudinary'
+
 import Product from '../models/Products.js'
 
 export async function createProduct (req, res) {
@@ -53,30 +57,20 @@ export async function deleteProduct (req, res) {
     res.status(200).json({ msg: `Product ${ productId } deleted` })
 }
 
-const uploadImage = async (req, res) => {
-    // need express file upload pkg & use express static
-    if (!req.files) {
-        throw new Error('No files uploaded')
-    }
-
-    const productImage = req.files.image
-
-    if (!productImage.mimetype.startsWith('image')) {
-        throw new Error('Please upload image')
-    }
-
-    // I don't think I want images larger than 5mb
-    const maxSize = 1024 * 1024 * 5
-    if (productImage.size > maxSize) {
-        throw new Error('Please upload image < 5mb')
-    }
-
-    const imagePath = path.join(
-        __dirname,
-        '/public/uploads/' + `${ productImage.name }`
+export async function uploadImage (req, res) {
+    const uploadToCloud = await cloudinary.v2.uploader.upload(
+        req.files.image.tempFilePath,
+        {
+            use_filename: true,
+            folder: 'board-game-images'
+        }
     )
+    console.log(uploadToCloud)
 
-    await productImage.mv(imagePath)
+    // remove temp files from our server
+    fs.unlinkSync(req.files.image.tempFilePath)
 
-    res.status(200).json({ image: `/uploads/${ productImage.name }` })
+    return res.status(200).json({ image: { src: uploadToCloud.secure_url } })
+
+    // alt version uses streams?
 }

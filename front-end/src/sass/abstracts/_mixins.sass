@@ -25,9 +25,29 @@
         background-color: white
 
 @mixin navbar-gradient
+    
     /* fallback for old browsers */
-    background: #f12711
-    // /* Chrome 10-25, Safari 5.1-6 */
-    background: -webkit-linear-gradient(to right, #f5af19, #f12711)
-    // /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-    background: linear-gradient(to right, #f5af19, #f12711)
+    background: #8e9eab
+    /* Chrome 10-25, Safari 5.1-6 */
+    background: -webkit-linear-gradient(to right, #8e9eab, #eef2f3)
+    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    background: linear-gradient(to right, #8e9eab, #eef2f3)
+
+@mixin titleSizeAndClip
+    font-size: 10rem
+    font-weight: bold
+    background-clip: text
+    text-fill-color: transparent
+    -webkit-background-clip: text
+    -webkit-text-fill-color: transparent
+
+@mixin header-carousel-hv
+    height: 95vh
+    width: 100%
+
+@mixin fade-in($name, $duration, $method, $time)
+    animation: $name $duration $method $time
+
+@mixin keyframes($name)
+    @keyframes #{$name}
+        @content

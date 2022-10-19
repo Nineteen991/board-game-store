@@ -1,2 +1,58 @@
 .carousel
-    display: flex
+  @include header-carousel-hv
+  position: relative
+  z-index: 0
+  margin: auto
+  overflow: hidden
+
+.slide
+  @include header-carousel-hv
+  display: none
+
+.visible
+  display: block
+
+.slide-container
+  @include header-carousel-hv
+  position: relative
+  display: flex
+  @include centerVerticalAndHorizonal
+
+  @include keyframes(fade-in)
+    0%
+      opacity: 0
+    50%
+      opacity: .5
+    100%
+      opacity: 1
+  @include fade-in(fade-in, 1s, linear, 1)
+  
+
+.slide-img
+  width: 100%
+
+.slide-caption
+  position: absolute
+  z-index: 10
+  @include navbar-gradient
+  @include titleSizeAndClip
+
+.indicator-dots
+  position: absolute
+  z-index: 10
+  margin-top: -3rem
+  text-align: center
+  width: 100%
+
+.dot
+  height: 1.5rem
+  width: 2.5rem
+  margin: .5rem
+  background-color: #aaa
+  border-radius: 50%
+  border: 1px solid #999
+  display: inline-block
+  cursor: pointer
+
+.dot-visible
+  background-color: #eee
