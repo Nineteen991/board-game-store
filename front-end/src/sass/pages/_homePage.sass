@@ -1,0 +1,21 @@
+.about
+    @include font-oswald
+    padding: 5% 10%
+
+.about-info
+    @include flex-column
+    @include centerVerticalAndHorizonal
+
+.about-title
+    @include navbar-gradient
+    @include titleSizeAndClip
+    font-size: 5rem
+    text-transform: uppercase
+
+.about-title:not(:last-of-type)
+    padding-bottom: 3rem
+
+.about-p
+    color: white
+    font-size: 3rem
+    padding-bottom: 3rem
