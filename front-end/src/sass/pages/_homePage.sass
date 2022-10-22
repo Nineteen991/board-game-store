@@ -1,21 +1,32 @@
 .about
     @include font-oswald
-    padding: 5% 10%
+    padding: 3% 5%
+    @include flex-column
+    @include centerVerticalAndHorizonal
+
+.about-info-pic
+    display: flex
+    justify-content: space-evenly
+    align-items: center
+    padding-bottom: 3%
 
 .about-info
     @include flex-column
     @include centerVerticalAndHorizonal
+    margin-right: 2rem
 
 .about-title
     @include navbar-gradient
     @include titleSizeAndClip
     font-size: 5rem
     text-transform: uppercase
-
-.about-title:not(:last-of-type)
-    padding-bottom: 3rem
+    padding-bottom: 2rem
 
 .about-p
     color: white
     font-size: 3rem
     padding-bottom: 3rem
+
+.about-img
+    width: 40%
+    clip-path: polygon(12.5% 0, 100% 0, 100% 90%, 87.5% 100%, 0 100%, 0 10%)

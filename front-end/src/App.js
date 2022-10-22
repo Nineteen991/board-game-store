@@ -5,6 +5,7 @@ import HomePage from './routes/HomePage'
 import EventsPage from './routes/EventsPage'
 import ContactPage from './routes/ContactPage'
 import Cart from './routes/Cart'
+import Store from './routes/Store'
 import './App.sass'
 
 export default function App () {
@@ -24,6 +25,7 @@ export default function App () {
         <Route path='/events' element={ <EventsPage /> } />
         <Route path='/contact' element={ <ContactPage /> } />
         <Route path='/cart' element={ <Cart /> } />
+        <Route path='/shop' element={ <Store /> } />
       </Routes>
 
     </div>

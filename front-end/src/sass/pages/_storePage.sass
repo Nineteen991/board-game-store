@@ -1,0 +1,33 @@
+.store
+    padding: 2.5% 5%
+    
+.store-tagline, .store-tagline-2
+    @include navbar-gradient
+    @include titleSizeAndClip
+    font-size: 5rem
+    // text-transform: uppercase
+    text-align: center
+
+.store-tagline-2
+    font-size: 3rem
+
+.products
+    padding-top: 2.5%
+    display: grid
+    grid-template-columns: 1fr 1fr 1fr
+    grid-template-rows: 75vh
+    gap: 5rem
+
+.product-card
+    width: 100%
+    color: white
+    clip-path: polygon(12.5% 0, 100% 0, 100% 90%, 87.5% 100%, 0 100%, 0 10%)
+    cursor: pointer
+
+.product-img
+    height: 75%
+    width: 100%
+
+.product-info
+    height: 25%
+    width: 100%

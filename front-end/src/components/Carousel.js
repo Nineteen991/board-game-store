@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import { Link } from 'react-router-dom'
 
 import gameImage from '../images/BoardGame3.webp'
 import tablesImage from '../images/dice-house-games-2.webp'
@@ -35,6 +36,9 @@ export default function Carousel () {
       <div className='slide-container'>
         <img src={ slide.image } className='slide-img' alt="Store images" />
         <div className='slide-caption'>{ slide.caption }</div>
+        <Link to='/shop' className='slide-link'>
+          <button className='slide-btn'>Shop for Games</button>
+        </Link>
       </div>
     </div>
   ))
@@ -54,7 +58,7 @@ export default function Carousel () {
           ? 0
           : prev + 1
       ))
-    }, 3000)
+    }, 5000)
 
     return () => clearTimeout(interval)
   }, [slideIndex])
