@@ -22,8 +22,17 @@ function ContextProvider ({ children }) {
     // Open Modal info
     const [openModal, setOpenModal] = useState(null)
 
+    // Cart
+    const [cart, setCart] = useState([])
+
+console.log(cart)
     return (
-        <Context.Provider value={{ apiData, openModal, setOpenModal }}>
+        <Context.Provider value={{ 
+            apiData, 
+            openModal, 
+            setOpenModal,
+            cart, setCart
+        }}>
             { children }
         </Context.Provider>
     )

@@ -1,6 +1,6 @@
 import { useContext } from 'react'
 
-import { Context } from '../ContextApiData'
+import { Context } from '../ContextData'
 import GameModal from '../components/GameModal'
 
 export default function Store () {
@@ -14,7 +14,7 @@ export default function Store () {
       onClick={ () => setOpenModal(product) }
     >
       <img 
-        src={ product.image } 
+        src={ product.primary_images.images[0] } 
         className='product-img' 
         alt={ product.name }
         loading='lazy'

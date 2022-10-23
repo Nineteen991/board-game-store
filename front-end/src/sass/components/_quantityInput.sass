@@ -1,0 +1,32 @@
+.quantity
+  display: flex
+  @include centerVerticalAndHorizonal
+
+.quantity-btns
+  height: 2.5rem
+  width: 2.5rem
+  margin: 0 1rem
+  @include navbar-gradient
+  color: white
+  font-weight: bold
+  border-radius: 50%
+  border: none
+  cursor: pointer
+  
+  &:active
+    transform: translateY(.2rem)
+
+.quantity-input
+  height: 2.5rem
+  width: 2.5rem
+  font-size: 2rem
+  text-align: center
+  border: none
+
+.in-stock
+  margin-right: 2rem
+  color: #f12711
+
+.add-to-cart
+  @include buttons
+  margin-left: 2rem
