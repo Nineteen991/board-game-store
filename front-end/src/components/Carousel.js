@@ -1,34 +1,11 @@
 import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 
-import gameImage from '../images/BoardGame3.webp'
-import tablesImage from '../images/dice-house-games-2.webp'
-import playerImage from '../images/Ganymede.webp'
-import vintageImage from '../images/vintage.webp'
-
-export default function Carousel () {
-  const headerCarousel = [
-    {
-      image: gameImage,
-      caption: 'Your Gaming Headquarters'
-    },
-    {
-      image: vintageImage,
-      caption: 'Est 1950'
-    },
-    {
-      image: playerImage,
-      caption: 'Play a Game or Two'
-    },
-    {
-      image: tablesImage,
-      caption: 'Plenty of space for multiple games'
-    }
-  ]
+export default function Carousel ({ carouselArray }) {
 
   const [slideIndex, setSlideIndex] = useState(0)
 
-  const renderSlides = headerCarousel.map((slide, index) => (
+  const renderSlides = carouselArray.map((slide, index) => (
     <div 
       className={ slideIndex === index ? 'slide visible' : 'slide' } 
       key={ index }
@@ -43,7 +20,7 @@ export default function Carousel () {
     </div>
   ))
 
-  const renderDots = headerCarousel.map((slide, index) => (
+  const renderDots = carouselArray.map((slide, index) => (
     <span
       className={ slideIndex === index ? 'dot dot-visible' : 'dot' }
       key={ index }
@@ -54,7 +31,7 @@ export default function Carousel () {
   useEffect(() => {
     const interval = setTimeout(() => {
       setSlideIndex(prev => (
-        slideIndex === headerCarousel.length - 1
+        slideIndex === carouselArray.length - 1
           ? 0
           : prev + 1
       ))

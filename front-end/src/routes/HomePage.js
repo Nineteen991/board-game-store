@@ -1,4 +1,5 @@
 import Carousel from '../components/Carousel'
+import { headerCarousel } from '../util/heroData'
 import Footer from '../components/Footer'
 import storeFront from '../images/storefront.webp'
 
@@ -7,7 +8,7 @@ export default function homePage() {
   return (
     <div className='homepage'>
 
-      <Carousel />
+      <Carousel carouselArray={ headerCarousel } />
 
       <div className='about'>
 
