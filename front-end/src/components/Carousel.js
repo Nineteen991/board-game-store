@@ -1,8 +1,8 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, memo } from 'react'
 import { Link } from 'react-router-dom'
 
-export default function Carousel ({ carouselArray }) {
-
+function Carousel ({ carouselArray, captions }) {
+console.log(carouselArray)
   const [slideIndex, setSlideIndex] = useState(0)
 
   const renderSlides = carouselArray.map((slide, index) => (
@@ -11,11 +11,11 @@ export default function Carousel ({ carouselArray }) {
       key={ index }
     >
       <div className='slide-container'>
-        <img src={ slide.image } className='slide-img' alt="Store images" />
-        <div className='slide-caption'>{ slide.caption }</div>
-        <Link to='/shop' className='slide-link'>
-          <button className='slide-btn'>Shop for Games</button>
-        </Link>
+        <img src={ slide } className='slide-img modal-img' alt="Store images" />
+        {
+          captions
+            && <div className='slide-caption'>{ captions[index] }</div>
+        }
       </div>
     </div>
   ))
@@ -47,3 +47,5 @@ export default function Carousel ({ carouselArray }) {
     </div>
   )
 }
+
+export default memo(Carousel)

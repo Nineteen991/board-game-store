@@ -4,14 +4,16 @@
   z-index: 0
   margin: auto
   overflow: hidden
-  clip-path: polygon(0 0, 100% 0, 100% 95%, 95% 100%, 5% 100%, 0 95%)
+  height: 100%
 
 .slide
   @include header-carousel-hv
   display: none
+  height: 100%
 
 .visible
   display: block
+  height: 100%
 
 .slide-container
   @include header-carousel-hv
@@ -39,14 +41,6 @@
   @include titleSizeAndClip
   font-size: 5rem
   @include text-shadow-white
-
-.slide-link
-  position: absolute
-  z-index: 10
-  margin-top: 15rem
-
-.slide-btn
-  @include buttons
 
 .indicator-dots
   position: absolute

@@ -4,20 +4,15 @@ import playerImage from '../images/Ganymede.webp'
 import vintageImage from '../images/vintage.webp'
 
 export const headerCarousel = [
-  {
-    image: gameImage,
-    caption: 'Your Gaming Headquarters'
-  },
-  {
-    image: vintageImage,
-    caption: 'Est 1950'
-  },
-  {
-    image: playerImage,
-    caption: 'Play a Game or Two'
-  },
-  {
-    image: tablesImage,
-    caption: 'Plenty of space for multiple games'
-  }
+  gameImage,
+  vintageImage,
+  playerImage,
+  tablesImage
+]
+
+export const captions = [
+  'Your Gaming Headquarters',
+  'Est 1950',
+  'Play a Game or Two',
+  'Plenty of space for multiple games'
 ]

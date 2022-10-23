@@ -2,10 +2,11 @@ import { useContext } from 'react'
 
 import { Context } from '../ContextData'
 import QuantityInput from './QuantityInput'
+import Carousel from './Carousel'
 
 export default function GameModal () {
   const { openModal, setOpenModal } = useContext(Context)
-
+  
   function renderSecondaryDetails () {
     const details = openModal.secondary_images.images.map((image, index) => (
       <div className={`modal-details-${ image.css_property }`} key={ index }>
@@ -29,6 +30,10 @@ export default function GameModal () {
     return details
   }
 
+  async function getModalImages () {
+    return await openModal.primary_images.images
+  }
+
   return (
     openModal
       ? (
@@ -41,11 +46,10 @@ export default function GameModal () {
 
             <div className='modal-product'>
               <div className='modal-header'>
-                <img 
-                  className='modal-img'
-                  src={ openModal.primary_images.images[0] } 
-                  alt={ openModal.name } 
-                />
+                {
+                  openModal.primary_images.images
+                    && <Carousel carouselArray={ openModal.primary_images.images } />
+                }
                 <div className='modal-desc'>
                   { renderPrimaryDetails() }
                   <QuantityInput 

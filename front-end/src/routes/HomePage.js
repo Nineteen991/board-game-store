@@ -1,14 +1,22 @@
+import { memo } from 'react'
+import { Link } from 'react-router-dom'
+
 import Carousel from '../components/Carousel'
-import { headerCarousel } from '../util/heroData'
+import { headerCarousel, captions } from '../util/heroData'
 import Footer from '../components/Footer'
 import storeFront from '../images/storefront.webp'
 
-export default function homePage() {
+function homePage() {
 
   return (
     <div className='homepage'>
 
-      <Carousel carouselArray={ headerCarousel } />
+      <div className='carousel-div'>
+        <Carousel carouselArray={ headerCarousel } captions={ captions } />
+        <Link to='/shop' className='shop-link'>
+          <button className='shop-btn'>Shop for Games</button>
+        </Link>
+      </div>
 
       <div className='about'>
 
@@ -40,3 +48,5 @@ export default function homePage() {
     </div>
   )
 }
+
+export default memo(homePage)
