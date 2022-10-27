@@ -25,13 +25,18 @@ function ContextProvider ({ children }) {
     // Cart
     const [cart, setCart] = useState([])
 
-console.log(cart)
+    function removeFromCart(id) {
+        setCart(prev => prev.filter(item => item._id !== id))
+    }
+
     return (
         <Context.Provider value={{ 
             apiData, 
             openModal, 
             setOpenModal,
-            cart, setCart
+            cart, 
+            setCart,
+            removeFromCart
         }}>
             { children }
         </Context.Provider>

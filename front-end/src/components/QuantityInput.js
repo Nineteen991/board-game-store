@@ -62,7 +62,12 @@ export default function QuantityInput ({ inventory, item }) {
         +
       </button>
 
-      <button className='add-to-cart' onClick={ addToCart }>Add to cart</button>
+      <button className='add-to-cart' 
+        onClick={ addToCart }
+        disabled={ count === 0 }
+      >
+        Add to cart
+      </button>
 
     </div>
   )

@@ -1,3 +1,4 @@
+import { useContext } from 'react'
 import { Link, Routes, Route } from 'react-router-dom'
 
 import Navbar from './components/Navbar'
@@ -6,10 +7,12 @@ import EventsPage from './routes/EventsPage'
 import ContactPage from './routes/ContactPage'
 import Cart from './routes/Cart'
 import Store from './routes/Store'
+import { Context } from './ContextData'
 import './App.sass'
 
 export default function App () {
-  const emptyCart = 'line'
+  const { cart } = useContext(Context)
+  const emptyCart = cart.length > 0 ? 'fill' : 'line'
 
   return (
     <div className='container'>
@@ -17,7 +20,12 @@ export default function App () {
       <Navbar />
 
       <Link to='/cart' className='cart-icon'>
-        <i className={`ri-shopping-cart-2-${ emptyCart }`}></i>
+        <i className={`ri-shopping-cart-2-${ emptyCart }`}>
+          {
+            cart.length > 0
+              && <span className='num-cart-items'>{ cart.length }</span>
+          }
+        </i>
       </Link>
 
       <Routes>
