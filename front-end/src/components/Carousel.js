@@ -1,5 +1,4 @@
 import { useState, useEffect, memo } from 'react'
-import { Link } from 'react-router-dom'
 
 function Carousel ({ carouselArray, captions }) {
 console.log(carouselArray)

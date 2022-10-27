@@ -1,6 +1,6 @@
 .store
     padding: 2.5% 5%
-    
+
 .store-tagline, .store-tagline-2
     @include navbar-gradient
     @include titleSizeAndClip
@@ -12,23 +12,24 @@
     font-size: 3rem
 
 .products
+    height: 100%
     padding-top: 2.5%
     display: grid
     grid-template-columns: 1fr 1fr 1fr
-    grid-template-rows: 75vh
+    // grid-template-rows: 50vh
     gap: 5rem
 
 .product-card
+    height: 75vh
     width: 100%
     color: white
     clip-path: polygon(12.5% 0, 100% 0, 100% 90%, 87.5% 100%, 0 100%, 0 10%)
     cursor: pointer
 
 .product-img
-    height: 75%
+    height: 80%
     width: 100%
 
 .product-info
-    height: 25%
+    height: 20%
     width: 100%
-    @include grid-center

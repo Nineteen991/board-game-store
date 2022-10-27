@@ -1,6 +1,3 @@
-.carousel
-  
-
 .modal
   display: flex
   justify-content: center
@@ -22,20 +19,26 @@
   width: 60%
   clip-path: polygon(12.5% 0, 100% 0, 100% 90%, 87.5% 100%, 0 100%, 0 10%)
   overflow: scroll
-  padding: 2% 2% 0
+  padding: 0 2%
   @include font-oswald
 
 .modal-header
   height: 90%
-  display: flex
-
-.modal-img
-  height: 100%
   width: 100%
+  display: flex
+  // align-items: center
+
+// .carousel
+//   width: 100%
+
+// .modal-img
+//   height: 100%
+//   width: 100%
 
 .modal-desc
-  font-size: 2rem
+  font-size: 1.6rem
   height: 100%
+  width: 100%
   padding: 0 2%
   // @include navbar-gradient
   // @include titleSizeAndClip
@@ -47,9 +50,12 @@
   padding-top: 2%
   display: grid
   grid-template-columns: repeat(auto-fit, minmax(30rem, 1fr))
-  grid-auto-rows: 45vh
+  grid-auto-rows: 50vh
   grid-gap: 5rem
   // grid-auto-flow: dense
+
+.modal-details-img
+  width: 100%
 
 .modal-details-small
   grid-column: span 1
@@ -60,6 +66,13 @@
 .modal-details-big
   grid-column: span 3
   grid-row: span 2
+  height: 100%
+
+.modal-details-big img
+  height: 90%
+
+.fill-height
+  height: 100%
 
 .modal-details-desc
   font-size: 1.6rem
