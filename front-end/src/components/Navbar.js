@@ -5,7 +5,7 @@ export default function Navbar () {
   const [toggleNavbar, setToggleNavbar] = useState(false)
 
   return (
-    <nav>
+    <nav className='nav'>
       {/* menu icon */}
       <div
         className={ `${ toggleNavbar ? "change" : "nav-burger" }` }

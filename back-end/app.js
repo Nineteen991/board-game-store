@@ -1,19 +1,15 @@
-import express from 'express'
-import cors from 'cors'
-import 'express-async-errors'
-import * as dotenv from 'dotenv'
-import fileUpload from 'express-fileupload'
-import bodyParser from 'body-parser'
-import cloudinary from 'cloudinary'
+const express = require('express') 
+const cors = require('cors') 
+require('express-async-errors')
+require('dotenv').config()
+const fileUpload = require('express-fileupload') 
+const bodyParser = require('body-parser') 
+const cloudinary = require('cloudinary') 
 
-dotenv.config()
 const app = express()
 
 // database
-import connectDB from './db/connect.js'
-
-// routers
-import productRouter from './routes/productRouter.js'
+const connectDB = require('./db/connect.js')
 
 // middleware
 app.use(cors())
@@ -22,6 +18,10 @@ app.use(bodyParser.json({ limit: "30mb", extended: true }))
 app.use(bodyParser.urlencoded({ limit: "30mb", extended: true }))
 
 app.use(express.static('/public'))
+
+// routers
+const productRouter = require('./routes/productRouter')
+const stripeRouter = require('./routes/stripeRouter')
 
 // file upload
 cloudinary.v2.config({
@@ -36,6 +36,7 @@ app.get('/', (req, res) => {
     res.send('Board game store, server probably started')
 })
 
+app.use('/api/v1/stripe', stripeRouter)
 app.use('/api/v1/products', productRouter)
 
 const PORT = process.env.PORT || 5000

@@ -1,11 +1,12 @@
 import { useContext } from "react"
+import { Link } from 'react-router-dom'
 
 import { Context } from '../ContextData'
 import CartItem from "../components/CartItem"
 import { formatPrice } from "../util/formatPrice"
 
 export default function Cart () {
-  const { cart, setCart } = useContext(Context)
+  const { cart } = useContext(Context)
   const totals = []
 
   const cartItemElements = cart.map(item => {
@@ -22,9 +23,12 @@ export default function Cart () {
   return (
     <div className="cart">
       <h1 className="cart-title">Place an Order</h1>
+      <div className="totals-pickup">
+        <h3 className="totals-addr">Pickup From: Santa Cruz Games</h3>
+      </div>
       {
         cart.length > 0
-          && (
+          ? (
             <>
               { cartItemElements }
               <div className="totals-container">
@@ -41,14 +45,23 @@ export default function Cart () {
                   <p className="totals">{ formatPrice(total) }</p>
                 </div>
               </div>
-
-              <button 
-                className="place-order-btn"
-              >
-                Place Order
-              </button>
+                
+              <Link to='/checkout'>
+                <button 
+                  className="place-order-btn"
+                >
+                  Checkout
+                </button>
+              </Link>
             </>
           )
+        : <Link to='/shop'>
+            <button 
+              className="place-order-btn"
+            >
+              Buy some Stuff
+            </button>
+          </Link>
       }
     </div>
   )

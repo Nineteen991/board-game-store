@@ -1,14 +1,14 @@
-import express from 'express'
-import {
+const express = require('express')
+const router = express.Router()
+
+const {
     createProduct,
     getAllProducts,
     getSingleProduct,
     updateProduct,
     deleteProduct,
     uploadImage
-} from '../controllers/productController.js'
-
-const router = express.Router()
+} = require('../controllers/productController')
 
 router.route('/')
     .get(getAllProducts)
@@ -22,4 +22,4 @@ router.route('/:id')
 router.route('/uploads')
     .post(uploadImage)
 
-export default router
+module.exports = router

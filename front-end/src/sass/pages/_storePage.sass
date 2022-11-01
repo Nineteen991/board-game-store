@@ -1,5 +1,6 @@
 .store
-    padding: 2.5% 5%
+    padding: 2.5%
+    width: 100%
 
 .store-tagline, .store-tagline-2
     @include navbar-gradient
@@ -15,21 +16,52 @@
     height: 100%
     padding-top: 2.5%
     display: grid
-    grid-template-columns: 1fr 1fr 1fr
-    // grid-template-rows: 50vh
-    gap: 5rem
+    grid-template-columns: 1fr 1fr
+    grid-auto-rows: 50vh
+    gap: 10rem
+
+    @media(max-width: 40rem)
+        grid-template-columns: 1fr
 
 .product-card
-    height: 75vh
+    // height: 50vh
     width: 100%
     color: white
+    background-color: white
     clip-path: polygon(12.5% 0, 100% 0, 100% 90%, 87.5% 100%, 0 100%, 0 10%)
     cursor: pointer
+    display: flex
 
 .product-img
-    height: 80%
-    width: 100%
+    max-width: 60%
+    margin-left: auto
+    margin-right: auto
 
 .product-info
-    height: 20%
+    height: 100%
+    width: 40%
+    @include flex-column
+
+    /* fallback for old browsers */
+    background: #134E5E
+    /* Chrome 10-25, Safari 5.1-6 */
+    background: -webkit-linear-gradient(to right, #71B280, #134E5E)
+    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    background: linear-gradient(to right, #71B280, #134E5E)
+
+.product-header
     width: 100%
+    padding: 1rem 2rem
+    @include font-oswald
+    font-weight: 500
+    font-size: 2rem
+
+    display: flex
+    justify-content: space-between
+    align-items: center
+
+.product-desc
+    padding: 1rem 2rem
+    @include font-oswald
+    font-weight: 300
+    font-size: 2rem

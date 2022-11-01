@@ -7,6 +7,8 @@ import EventsPage from './routes/EventsPage'
 import ContactPage from './routes/ContactPage'
 import Cart from './routes/Cart'
 import Store from './routes/Store'
+import Checkout from './routes/Checkout'
+import Complete from './routes/Complete'
 import { Context } from './ContextData'
 import './App.sass'
 
@@ -34,6 +36,8 @@ export default function App () {
         <Route path='/contact' element={ <ContactPage /> } />
         <Route path='/cart' element={ <Cart /> } />
         <Route path='/shop' element={ <Store /> } />
+        <Route path='/checkout' element={ <Checkout /> } />
+        <Route path='/complete' element={ <Complete /> } />
       </Routes>
 
     </div>
