@@ -2,18 +2,23 @@ const stripe = require('stripe')('sk_test_mk88WTaqx8vkziXaS7tMfeFt00q6zuI5a7')
 
 const stripeController = async (req, res) => {
     try {
-        console.log(req.body)
-        const { items, email } = req.body
-
-        const calculateOrderAmount = (items) => {
-            return 1400
+        const { cart, customer } = req.body
+        console.log(customer)
+        const calculateOrderAmount = (cart) => {
+            const totalArr = cart.map(item => (
+                item.price * item.onOrder * 100
+            ))
+            // add each price together from the array
+            const total = totalArr.reduce((x,y) => x + y)
+            return total
         }
-
+ 
         // Create a PaymentIntent with the order amount and currency
         const paymentIntent = await stripe.paymentIntents.create({
-            amount: calculateOrderAmount(items),
+            amount: calculateOrderAmount(cart),
             currency: "usd",
-            receipt_email: email,
+            // customer: { name: customer.name },
+            receipt_email: customer.email,
             automatic_payment_methods: {
                 enabled: true,
             },

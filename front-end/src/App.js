@@ -7,12 +7,13 @@ import EventsPage from './routes/EventsPage'
 import ContactPage from './routes/ContactPage'
 import Cart from './routes/Cart'
 import Store from './routes/Store'
-import Checkout from './routes/Checkout'
 import Complete from './routes/Complete'
 import { Context } from './ContextData'
+import useCustomer from './hooks/useCustomer'
 import './App.sass'
 
 export default function App () {
+  const { customer, checkoutForm } = useCustomer()
   const { cart } = useContext(Context)
   const emptyCart = cart.length > 0 ? 'fill' : 'line'
 
@@ -34,9 +35,10 @@ export default function App () {
         <Route path='/' element={ <HomePage /> } />
         <Route path='/events' element={ <EventsPage /> } />
         <Route path='/contact' element={ <ContactPage /> } />
-        <Route path='/cart' element={ <Cart /> } />
+        <Route path='/cart' element={ 
+          <Cart customer={ customer } checkoutForm={ checkoutForm } /> 
+        } />
         <Route path='/shop' element={ <Store /> } />
-        <Route path='/checkout' element={ <Checkout /> } />
         <Route path='/complete' element={ <Complete /> } />
       </Routes>
 

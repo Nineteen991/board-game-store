@@ -1,11 +1,14 @@
-import { useContext } from "react"
+import { useContext, useState } from "react"
 import { Link } from 'react-router-dom'
 
 import { Context } from '../ContextData'
 import CartItem from "../components/CartItem"
 import { formatPrice } from "../util/formatPrice"
+import CustomerInfo from "../components/CustomerInfo"
+import Checkout from '../components/Checkout'
 
-export default function Cart () {
+export default function Cart ({ customer, checkoutForm }) {
+  const [toggleStripe, setToggleStripe] = useState(false)
   const { cart } = useContext(Context)
   const totals = []
 
@@ -23,13 +26,10 @@ export default function Cart () {
   return (
     <div className="cart">
       <h1 className="cart-title">Place an Order</h1>
-      <div className="totals-pickup">
-        <h3 className="totals-addr">Pickup From: Santa Cruz Games</h3>
-      </div>
       {
         cart.length > 0
           ? (
-            <>
+            <div className="cart-contents">
               { cartItemElements }
               <div className="totals-container">
                 <div className="totals-div">
@@ -46,23 +46,29 @@ export default function Cart () {
                 </div>
               </div>
                 
-              <Link to='/checkout'>
-                <button 
-                  className="place-order-btn"
-                >
-                  Checkout
-                </button>
-              </Link>
-            </>
+            </div>
           )
-        : <Link to='/shop'>
+        : <Link to='/shop' className="buy-stuff">
             <button 
-              className="place-order-btn"
+              className="buy-stuff-btn"
             >
               Buy some Stuff
             </button>
           </Link>
       }
+
+      <CustomerInfo 
+        customer={customer} 
+        checkoutForm={checkoutForm}
+        setToggleStripe={setToggleStripe}
+      />
+
+      {
+        toggleStripe && cart.length > 0
+          ? <Checkout customer={customer}/>
+          : null
+      }
+
     </div>
   )
 }

@@ -85,7 +85,7 @@ export default function StripeForm() {
         className="submit-btn"
       >
         <span id="button-text">
-          {isLoading ? <div className="spinner" id="spinner"></div> : "Pay now"}
+          {isLoading ? <div className="spinner" id="spinner"></div> : "Pay meow"}
         </span>
       </button>
       {/* Show any error or success messages */}

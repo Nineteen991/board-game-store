@@ -1,0 +1,28 @@
+.totals-pickup
+  grid-column: 2 / -1
+  grid-row: 2 / 3
+  @include flex-column
+  @include centerVerticalAndHorizonal
+  height: 100%
+
+.contact-form
+  @include flex-column
+  align-items: center
+  width: 30vw
+  min-width: 50rem
+  box-shadow: 0px 0px 0px 0.5px rgba(50, 50, 93, 0.1)
+
+.contact-info
+  height: 4rem
+  width: 100%
+  text-indent: .5rem
+  border-radius: .75rem
+  border: 1px solid #ddd
+  outline: none
+
+.contact-info:not(:last-of-type)
+  margin-bottom: 2rem
+
+.place-order-btn
+  @include buttons
+  margin-top: 2rem

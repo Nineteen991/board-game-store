@@ -1,19 +1,26 @@
 .cart
-  @include flex-column
-  align-items: center
-  align-self: center
+  display: grid
+  grid-template-columns: 1fr 1fr
+  grid-template-rows: 10rem 27rem 1fr
   padding: 2.5% 5%
-  width: 50%
 
 .cart-title
+  grid-column: 1 / -1
+  grid-row: 1 / 2
   @include navbar-gradient
   @include titleSizeAndClip
   font-size: 5rem
   text-align: center
   margin-bottom: 5rem
 
-.cart > div
-  margin-bottom: 5rem
+// .cart > div
+//   margin-bottom: 5rem
+
+.cart-contents
+  grid-column: 1 / 2
+  grid-row: 2 / -1
+  padding: 0 5rem
+  @include flex-column
 
 .totals-container
   align-self: flex-end
@@ -28,5 +35,9 @@
   font-size: 2rem
   padding: 0 2rem
 
-.place-order-btn
+.buy-stuff
+  display: grid
+  place-content: center
+
+.buy-stuff-btn
   @include buttons
