@@ -22,7 +22,7 @@ export default function Cart ({ customer, checkoutForm }) {
   const subtotal = totals.reduce((x, y) => x + y, 0)
   const tax = subtotal * .0925
   const total = subtotal + tax
-
+console.log(cart)
   return (
     <div className="cart">
       <h1 className="cart-title">Place an Order</h1>
