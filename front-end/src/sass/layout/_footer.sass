@@ -3,6 +3,19 @@
     padding: 0 10% 2%
     display: flex
     justify-content: space-evenly
+    flex-wrap: wrap
+
+    // @media(max-width: 50rem)
+    //     @include flex-column
+    //     @include centerVerticalAndHorizonal
+
+.footer-divs
+    @media(max-width: 40rem)
+        width: 100%
+        text-align: center
+
+.footer-divs:not(:last-of-type)
+    margin-bottom: 1rem
     
 .footer-titles
     @include navbar-gradient

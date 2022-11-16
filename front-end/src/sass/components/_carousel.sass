@@ -29,10 +29,12 @@
     100%
       opacity: 1
   @include fade-in(fade-in, 1s, linear, 1)
-  
 
 .slide-img
   width: 100%
+
+  @media (max-width: 140rem)
+    height: 100%
 
 .slide-caption
   position: absolute

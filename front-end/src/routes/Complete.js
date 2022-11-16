@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom'
 
 export default function Complete () {
+
   return (
     <div className="complete">
       <h1 className='complete-msg'>Payment Complete! Tell your friends.</h1>

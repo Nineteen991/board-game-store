@@ -3,12 +3,15 @@ import { useState } from 'react'
 export default function useCustomer() {
     const [customer, setCustomer] = useState({
         name: "",
-        email: ""
+        email: "",
+        street: "",
+        city: "",
+        state: "",
+        zip: ""
     })
 
     function checkoutForm (e) {
         const { name, value } = e.target
-        console.log(value)
         setCustomer(prev => (
             {
             ...prev,

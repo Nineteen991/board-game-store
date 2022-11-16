@@ -11,12 +11,24 @@ function ContextProvider ({ children }) {
         const controller = new AbortController()
         const signal = controller.signal
 
-        fetch(url, { signal: signal })
-            .then(res => res.json())
-            .then(data => setApiData(data.products))
-            .catch(err => console.log(err))
+        try {
+            const interval = setTimeout(() => {
+                fetch(url, { signal: signal })
+                    .then(res => res.json())
+                    .then(data => setApiData(data.products))
+                    .catch(err => console.log(err))
+            }, 1000)
 
-        return () => controller.abort()
+            return (
+                () => {
+                    controller.abort()
+                    clearTimeout(interval)
+                }
+            )
+        }
+        catch(error) {
+            console.log(error)
+        }
     }, [])
 
     // Open Modal info

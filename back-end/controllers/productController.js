@@ -43,7 +43,7 @@ async function updateProduct (req, res) {
 
 async function deleteProduct (req, res) {
     const { id: productId } = req.params
-    const product = await Product.findOneAndDelete({ _id: productId })
+    const product = await Product.findOne({ _id: productId })
 
     if (!product) {
         throw new Error(`No product matches this id: ${ productId }`)

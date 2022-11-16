@@ -9,25 +9,31 @@ const stripePromise = loadStripe('pk_test_vt8ZyUqCunXogiPG4j8GHwgB00P0qTWPZN')
 
 export default function Checkout ({ customer }) {
   const [clientSecret, setClientSecret] = useState("")
-
   const { cart } = useContext(Context)
 
-console.log(cart)
-console.log(customer)
   useEffect(() => {
-    // Create PaymentIntent as soon as the page loads
-    fetch("http://localhost:5000/api/v1/stripe", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(
-        { cart, customer }
-      ),
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        console.log(data)
-        return setClientSecret(data.clientSecret)
+    try {
+      const controller = new AbortController()
+      const signal = controller.signal
+      // Create PaymentIntent as soon as the page loads
+      fetch("http://localhost:5000/api/v1/stripe", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(
+              { cart, customer }
+            ),
+            signal
       })
+        .then(res => res.json())
+        .then(data => setClientSecret(data.clientSecret))
+        .catch(error => {
+          console.log(`Fetch Error: ${error}`)
+        })
+      return () => controller.abort()
+    }
+    catch (error) {
+      console.log(`Stripe API Error: ${error}`)
+    }
   }, [])
 
   const appearance = {
@@ -44,7 +50,7 @@ console.log(customer)
       {
         clientSecret ? (
           <Elements options={options} stripe={stripePromise}>
-            <StripeForm />
+            <StripeForm customer={ customer } />
           </Elements>
         )
         : null

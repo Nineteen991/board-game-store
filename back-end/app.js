@@ -22,6 +22,7 @@ app.use(express.static('/public'))
 // routers
 const productRouter = require('./routes/productRouter')
 const stripeRouter = require('./routes/stripeRouter')
+const ordersRouter = require('./routes/orderRouter')
 
 // file upload
 cloudinary.v2.config({
@@ -38,6 +39,7 @@ app.get('/', (req, res) => {
 
 app.use('/api/v1/stripe', stripeRouter)
 app.use('/api/v1/products', productRouter)
+app.use('/api/v1/orders', ordersRouter)
 
 const PORT = process.env.PORT || 5000
 

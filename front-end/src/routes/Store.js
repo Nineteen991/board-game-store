@@ -2,6 +2,7 @@ import { useContext } from 'react'
 
 import { Context } from '../ContextData'
 import GameModal from '../components/GameModal'
+import Footer from '../components/Footer'
 
 export default function Store () {
   const { apiData, setOpenModal } = useContext(Context)
@@ -47,6 +48,7 @@ export default function Store () {
         <div className='products'>
           { productCards }
         </div>
+        <Footer />
       </div>
     </>
   )

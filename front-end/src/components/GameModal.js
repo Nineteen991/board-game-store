@@ -3,9 +3,11 @@ import { useContext } from 'react'
 import { Context } from '../ContextData'
 import QuantityInput from './QuantityInput'
 import Carousel from './Carousel'
+import { useCount } from '../hooks/useCount'
 
 export default function GameModal() {
-  const { openModal, setOpenModal } = useContext(Context)
+  const { openModal, setOpenModal, setCart } = useContext(Context)
+  const { count, setCount, makeSureItsANumber } = useCount()
 
   function renderPrimaryDetails() {
     const details = openModal.detailed_desc.details.map(
@@ -29,12 +31,27 @@ export default function GameModal() {
           />
           {
             image.text
-              && <p className='modal-details-desc'>{ image.text }</p>
+              ? <p className='modal-details-desc'>{ image.text }</p>
+              : null
           }
         </div>
       )
     })
     return details
+  }
+
+  const order = { 
+    ...openModal, 
+    onOrder: count
+  }
+
+  function addToCart () {
+    setCart(prev => [...prev, order])
+  }
+
+  function nixModelResetCount() {
+    setCount(0)
+    setOpenModal(null)
   }
 
   return (
@@ -44,7 +61,7 @@ export default function GameModal() {
 
           <div
             className='modal-shadow'
-            onClick={() => setOpenModal(null)}>
+            onClick={ nixModelResetCount }>
           </div>
 
           <div className='modal-product'>
@@ -52,14 +69,37 @@ export default function GameModal() {
             <div className='modal-header'>
               {
                 openModal.primary_images.images
-                && <Carousel carouselArray={openModal.primary_images.images} />
+                  ? <Carousel carouselArray={openModal.primary_images.images} className="modal-img" />
+                  : null
               }
               <div className='modal-desc'>
                 {renderPrimaryDetails()}
-                <QuantityInput
-                  inventory={openModal.inventory}
-                  item={openModal}
-                />
+
+                <div className='inventory-cart'>
+                  <p className="quantity-p in-stock">
+                    {
+                      openModal.inventory
+                        ? `${openModal.inventory} in Stock`
+                        : 'Sold Out'
+                    }
+                  </p>
+                  <QuantityInput
+                    inventory={openModal.inventory}
+                    item={openModal}
+                    count={count}
+                    setCount={setCount}
+                    makeSureItsANumber={makeSureItsANumber}
+                  />
+                  <button 
+                    className='add-to-cart' 
+                    onClick={ addToCart }
+                    disabled={ count === 0 }
+                    style={ count === 0 ? {opacity: .5} : {}}
+                  >
+                    Add to cart
+                  </button>
+                </div>
+
               </div>
             </div>
 

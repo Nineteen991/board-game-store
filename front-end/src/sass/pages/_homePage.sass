@@ -27,10 +27,17 @@
     align-items: center
     padding-bottom: 3%
 
+    @media (max-width: 100rem)
+        flex-direction: column
+        justify-content: center
+
 .about-info
     @include flex-column
     @include centerVerticalAndHorizonal
     margin-right: 2rem
+
+    @media (max-width: 100rem)
+        margin: 0 5% 3%
 
 .about-title
     @include navbar-gradient
@@ -38,6 +45,7 @@
     font-size: 5rem
     text-transform: uppercase
     padding-bottom: 2rem
+    text-align: center
 
 .about-p
     color: white

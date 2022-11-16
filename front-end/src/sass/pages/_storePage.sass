@@ -2,6 +2,9 @@
     padding: 2.5%
     width: 100%
 
+    @media (max-width: 50rem)
+        padding-top: 15%
+
 .store-tagline, .store-tagline-2
     @include navbar-gradient
     @include titleSizeAndClip
@@ -15,12 +18,13 @@
 .products
     height: 100%
     padding-top: 2.5%
+    margin-bottom: 5%
     display: grid
     grid-template-columns: 1fr 1fr
     grid-auto-rows: 50vh
     gap: 10rem
 
-    @media(max-width: 40rem)
+    @media (max-width: 50rem)
         grid-template-columns: 1fr
 
 .product-card
@@ -59,6 +63,7 @@
     display: flex
     justify-content: space-between
     align-items: center
+    flex-wrap: wrap
 
 .product-desc
     padding: 1rem 2rem

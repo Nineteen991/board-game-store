@@ -19,9 +19,41 @@
   border-radius: .75rem
   border: 1px solid #ddd
   outline: none
-
-.contact-info:not(:last-of-type)
   margin-bottom: 2rem
+
+.contact-info:first-of-type
+  margin-top: 2rem
+
+.delivery-method
+  display: flex
+  justify-content: space-evenly
+  width: 30vw
+  min-width: 50rem
+
+.delivery-method > button
+  margin-top: 0
+
+.delivery-info
+  text-align: center
+
+.delivery-pickup
+  @include navbar-gradient
+  @include titleSizeAndClip
+  @include font-oswald
+  font-size: 2rem
+
+.addr-div
+  display: flex
+  justify-content: space-between
+  width: 100%
+
+.addr-info
+  height: 4rem
+  width: 33.3%
+  text-indent: .5rem
+  border-radius: .75rem
+  border: 1px solid #ddd
+  outline: none
 
 .place-order-btn
   @include buttons

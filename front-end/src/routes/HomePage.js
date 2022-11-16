@@ -1,4 +1,3 @@
-import { memo } from 'react'
 import { Link } from 'react-router-dom'
 
 import Carousel from '../components/Carousel'
@@ -6,13 +5,14 @@ import { headerCarousel, captions } from '../util/heroData'
 import Footer from '../components/Footer'
 import storeFront from '../images/storefront.webp'
 
-function homePage() {
+export default function HomePage() {
 
   return (
     <div className='homepage'>
 
       <div className='carousel-div'>
         <Carousel carouselArray={ headerCarousel } captions={ captions } />
+
         <Link to='/shop' className='shop-link'>
           <button className='shop-btn'>Shop for Games</button>
         </Link>
@@ -48,5 +48,3 @@ function homePage() {
     </div>
   )
 }
-
-export default memo(homePage)

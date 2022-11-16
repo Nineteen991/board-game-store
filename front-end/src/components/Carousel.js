@@ -10,7 +10,7 @@ console.log(carouselArray)
       key={ index }
     >
       <div className='slide-container'>
-        <img src={ slide } className='slide-img modal-img' alt="Store images" />
+        <img src={ slide } className='slide-img' alt="Store images" />
         {
           captions
             && <div className='slide-caption'>{ captions[index] }</div>

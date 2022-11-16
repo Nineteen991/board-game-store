@@ -1,11 +1,5 @@
-import { useContext } from 'react'
-
-import { useCount } from '../hooks/useCount'
-import { Context } from '../ContextData'
-
-export default function QuantityInput ({ inventory, item }) {
-  const { count, setCount, makeSureItsANumber } = useCount()
-  const { setCart } = useContext(Context)
+export default function QuantityInput (props) {
+  const { inventory, count, setCount, makeSureItsANumber } = props
 
   function increaseQuantity () {
     // make sure you can't buy more than what's in stock
@@ -26,18 +20,8 @@ export default function QuantityInput ({ inventory, item }) {
     }
   }
 
-  const order = { 
-    ...item, 
-    onOrder: count
-  }
-
-  function addToCart () {
-    setCart(prev => [...prev, order])
-  }
-
   return (
     <div className="quantity">
-      <p className="quantity-p in-stock">{ inventory } in Stock</p>
       <p className="quantity-p">Quantity:</p>
 
       <button 
@@ -60,13 +44,6 @@ export default function QuantityInput ({ inventory, item }) {
         disabled={ count === inventory }
       >
         +
-      </button>
-
-      <button className='add-to-cart' 
-        onClick={ addToCart }
-        disabled={ count === 0 }
-      >
-        Add to cart
       </button>
 
     </div>

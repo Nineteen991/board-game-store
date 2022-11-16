@@ -6,10 +6,12 @@ import CartItem from "../components/CartItem"
 import { formatPrice } from "../util/formatPrice"
 import CustomerInfo from "../components/CustomerInfo"
 import Checkout from '../components/Checkout'
+import useCustomer from '../hooks/useCustomer'
 
-export default function Cart ({ customer, checkoutForm }) {
+export default function Cart () {
   const [toggleStripe, setToggleStripe] = useState(false)
   const { cart } = useContext(Context)
+  const { customer, checkoutForm } = useCustomer()
   const totals = []
 
   const cartItemElements = cart.map(item => {

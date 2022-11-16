@@ -5,7 +5,7 @@ import {
   useElements
 } from "@stripe/react-stripe-js";
 
-export default function StripeForm() {
+export default function StripeForm({ customer }) {
   const stripe = useStripe();
   const elements = useElements();
 
@@ -30,17 +30,20 @@ export default function StripeForm() {
         case "succeeded":
           setMessage("Payment succeeded!");
           break;
+
         case "processing":
           setMessage("Your payment is processing.");
           break;
+
         case "requires_payment_method":
           setMessage("Your payment was not successful, please try again.");
           break;
+
         default:
           setMessage("Something went wrong.");
           break;
       }
-    });
+    })
   }, [stripe]);
 
   const handleSubmit = async (e) => {
@@ -54,13 +57,24 @@ export default function StripeForm() {
 
     setIsLoading(true);
 
+    const shippingInfo = {
+      address: {
+        city: customer.city,
+        line1: customer.street,
+        postal_code: customer.zip,
+        state: customer.state
+      },
+      name: customer.name
+    }
+
     const { error } = await stripe.confirmPayment({
       elements,
       confirmParams: {
         // Make sure to change this to your payment completion page
         return_url: "http://localhost:3000/complete",
+        shipping: shippingInfo
       },
-    });
+    })
 
     // This point will only be reached if there is an immediate error when
     // confirming the payment. Otherwise, your customer will be redirected to
