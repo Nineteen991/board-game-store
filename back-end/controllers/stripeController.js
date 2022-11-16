@@ -1,6 +1,5 @@
 const stripe = require('stripe')('sk_test_mk88WTaqx8vkziXaS7tMfeFt00q6zuI5a7')
 const Product = require('../models/Products')
-const { createOrder } = require('./ordersController')
 
 const stripeController = async (req, res) => {
 
@@ -42,9 +41,6 @@ const stripeController = async (req, res) => {
         })
 
         if (!paymentIntent) throw new Error('unsuccessful charge')
-
-        // Add the order to the db
-        await createOrder(cart, customer, paymentIntent)
 
         res.status(200).json({ 
             clientSecret: paymentIntent.client_secret, 

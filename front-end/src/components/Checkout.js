@@ -36,6 +36,29 @@ export default function Checkout ({ customer }) {
     }
   }, [])
 
+  useEffect(() => {
+    async function placeOrder() {
+      try {
+        const controller = new AbortController()
+        const signal = controller.signal
+        
+        await fetch("http://localhost:5000/api/v1/orders", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ cart, customer, clientSecret }),
+          signal
+        })
+          .catch(error => console.log(`2nd useEffect fetch error: ${error}`))
+  
+        return () => controller.abort()
+      }
+      catch (error) {
+        console.log(`2nd Stripe API Error: ${error}`)
+      }
+    }
+    placeOrder()
+  }, [clientSecret])
+
   const appearance = {
     theme: 'stripe',
   }

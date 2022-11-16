@@ -2,8 +2,7 @@ const mongoose = require('mongoose')
 
 const OrderSchema = new mongoose.Schema({
     customerInfo: {
-        type: String,
-        trim: true,
+        type: Object,
         required: true
     },
     itemsBought: {
@@ -16,8 +15,7 @@ const OrderSchema = new mongoose.Schema({
     },
     inStorePickup: {
         type: Boolean,
-        default: false,
-        required: true
+        default: true
     },
     shipped: {
         type: Boolean,
