@@ -1,7 +1,7 @@
 const Orders = require('../models/Orders')
 const Product = require('../models/Products')
-const stripe = require('stripe')('sk_test_mk88WTaqx8vkziXaS7tMfeFt00q6zuI5a7')
-const endpointSecret = 'acct_1GkCtsFnmrgYLyE1'
+// const stripe = require('stripe')('sk_test_mk88WTaqx8vkziXaS7tMfeFt00q6zuI5a7')
+// const endpointSecret = 'acct_1GkCtsFnmrgYLyE1'
 let globalCart
 
 const createOrder = async (req, res) => {
@@ -21,31 +21,20 @@ const createOrder = async (req, res) => {
 }
 
 const updateOrder = async (req, res) => {
-    console.log(`updateOrder: ${req.body}`)
-    const sig = req.headers['stipe-signature']
-
-    let event
-
-    try {
-        event = stripe.webhooks.constructEvent(req.body, sig, endpointSecret)
-        console.log(`da event: ${event}`)
-    }
-    catch (err) {
-        res.status(400).send(`Webhook Error: ${err.message}`)
-        return
-    }
+    let event = req.body
 
     // handle the event
     switch (event.type) {
+        // case 'payment_intent.created':
+        // case 'charge.succeeded':
         case 'payment_intent.succeeded':
-            console.log('orders cont payment intent succeded')
-            globalCart.forEach(async (item) => {
-                const prevInventory = await Product.findOne({ _id: item.id })
-                const newInventory = prevInventory.inventory - item.count
-        
+            globalCart.forEach(async (item) => {                
+                console.log(`da item ${item}`)
+                const newInventory = item.inventory - item.onOrder
+
                 // update the db inventory for those cart items sold
                 const product = await Product.findOneAndUpdate(
-                    { _id: item.id },
+                    { _id: item._id },
                     { inventory: newInventory },
                     { new:true, runValidators: true}
                 )
@@ -55,15 +44,13 @@ const updateOrder = async (req, res) => {
                         `No product inventory to update: ${ item.id }`
                     )
                 }
-                console.log(`probably updated the ${item.id} inventory`)
+                // return a 200 res to acknowledge receipt of the event
+                res.status(200).json({ msg: `${item.name} Inventory updated`})
             })
             break
         default:
             console.log(`Unhandled event type ${event.type}`)
     }
-    
-    // return a 200 res to acknowledge receipt of the event
-    res.status(200).json({ msg: `Inventory updated`})
 }
 
 const getOrders = async (req, res) => {

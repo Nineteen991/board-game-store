@@ -48,6 +48,7 @@ export default function Checkout ({ customer }) {
           body: JSON.stringify({ cart, customer, clientSecret }),
           signal
         })
+          .then(res => console.log(`placeOrder res: ${res}`))
           .catch(error => console.log(`2nd useEffect fetch error: ${error}`))
   
         return () => controller.abort()
@@ -57,7 +58,7 @@ export default function Checkout ({ customer }) {
       }
     }
     placeOrder()
-  }, [clientSecret])
+  }, [cart, customer, clientSecret])
 
   const appearance = {
     theme: 'stripe',

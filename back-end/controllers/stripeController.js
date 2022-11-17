@@ -1,4 +1,5 @@
-const stripe = require('stripe')('sk_test_mk88WTaqx8vkziXaS7tMfeFt00q6zuI5a7')
+require('dotenv').config()
+const stripe = require('stripe')(process.env.STRIPE_TEST_SK)
 const Product = require('../models/Products')
 
 const stripeController = async (req, res) => {

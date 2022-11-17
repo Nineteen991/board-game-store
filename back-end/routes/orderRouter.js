@@ -18,4 +18,7 @@ router.route('/:id')
     .patch(updateOrder)
     .delete(deleteOrder)
 
+router.route('/hook')
+    .post(updateOrder)
+
 module.exports = router
