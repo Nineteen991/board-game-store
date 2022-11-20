@@ -17,7 +17,7 @@ function ContextProvider ({ children }) {
                     .then(res => res.json())
                     .then(data => setApiData(data.products))
                     .catch(err => console.log(err))
-            }, 1000)
+            }, 500)
 
             return (
                 () => {

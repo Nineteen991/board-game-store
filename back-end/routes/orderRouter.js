@@ -5,8 +5,9 @@ const {
     createOrder,
     getOrders,
     getSingleOrder,
+    updateOrder,
     deleteOrder,
-    updateOrder
+    updateInventoryStripeHook
 } = require('../controllers/ordersController')
 
 router.route('/')
@@ -19,6 +20,6 @@ router.route('/:id')
     .delete(deleteOrder)
 
 router.route('/hook')
-    .post(updateOrder)
+    .post(updateInventoryStripeHook)
 
 module.exports = router

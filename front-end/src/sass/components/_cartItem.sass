@@ -1,9 +1,12 @@
 .cart-item
   display: flex
   align-items: center
-  clip-path: polygon(5% 0, 100% 0, 100% 80%, 5% 100%, 0 100%, 0 20%)
+  // clip-path: polygon(5% 0, 100% 0, 100% 80%, 5% 100%, 0 100%, 0 20%)
   @include font-oswald
   width: 100%
+
+.cart-item:not(:last-of-type)
+  margin-bottom: 2rem
 
 .ri-delete-bin-line, .ri-delete-bin-fill
   font-size: 5rem

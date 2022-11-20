@@ -15,14 +15,15 @@ export default function Checkout ({ customer }) {
     try {
       const controller = new AbortController()
       const signal = controller.signal
+
       // Create PaymentIntent as soon as the page loads
       fetch("http://localhost:5000/api/v1/stripe", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(
-              { cart, customer }
-            ),
-            signal
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(
+            { cart, customer }
+          ),
+          signal
       })
         .then(res => res.json())
         .then(data => setClientSecret(data.clientSecret))
@@ -34,10 +35,10 @@ export default function Checkout ({ customer }) {
     catch (error) {
       console.log(`Stripe API Error: ${error}`)
     }
-  }, [])
+  }, [cart, customer])
 
   useEffect(() => {
-    async function placeOrder() {
+    async function createOrder() {
       try {
         const controller = new AbortController()
         const signal = controller.signal
@@ -48,8 +49,7 @@ export default function Checkout ({ customer }) {
           body: JSON.stringify({ cart, customer, clientSecret }),
           signal
         })
-          .then(res => console.log(`placeOrder res: ${res}`))
-          .catch(error => console.log(`2nd useEffect fetch error: ${error}`))
+          .catch(error => console.log(`2nd fetch error: ${error}`))
   
         return () => controller.abort()
       }
@@ -57,8 +57,8 @@ export default function Checkout ({ customer }) {
         console.log(`2nd Stripe API Error: ${error}`)
       }
     }
-    placeOrder()
-  }, [cart, customer, clientSecret])
+    createOrder()
+  }, [])
 
   const appearance = {
     theme: 'stripe',

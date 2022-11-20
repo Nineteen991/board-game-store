@@ -1,7 +1,6 @@
 import { useState, useEffect, memo } from 'react'
 
 function Carousel ({ carouselArray, captions }) {
-console.log(carouselArray)
   const [slideIndex, setSlideIndex] = useState(0)
 
   const renderSlides = carouselArray.map((slide, index) => (
