@@ -1,7 +1,5 @@
 const Orders = require('../models/Orders')
 const Product = require('../models/Products')
-// const stripe = require('stripe')('sk_test_mk88WTaqx8vkziXaS7tMfeFt00q6zuI5a7')
-// const endpointSecret = 'acct_1GkCtsFnmrgYLyE1'
 let globalCart
 
 const createOrder = async (req, res) => {
@@ -29,6 +27,7 @@ const createOrder = async (req, res) => {
     res.status(200).json({ order })
 }
 
+// stripe listen --forward-to localhost:5000/api/v1/orders/hook
 const updateInventoryStripeHook = async (req, res) => {
     let event = req.body
 

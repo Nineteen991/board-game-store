@@ -12,10 +12,10 @@ export default function Checkout ({ customer }) {
   const { cart } = useContext(Context)
 
   useEffect(() => {
-    try {
-      const controller = new AbortController()
-      const signal = controller.signal
+    const controller = new AbortController()
+    const signal = controller.signal
 
+    try {
       // Create PaymentIntent as soon as the page loads
       fetch("http://localhost:5000/api/v1/stripe", {
           method: "POST",
@@ -38,11 +38,11 @@ export default function Checkout ({ customer }) {
   }, [cart, customer])
 
   useEffect(() => {
+    const controller = new AbortController()
+    const signal = controller.signal
+
     async function createOrder() {
-      try {
-        const controller = new AbortController()
-        const signal = controller.signal
-        
+      try {        
         await fetch("http://localhost:5000/api/v1/orders", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
@@ -50,14 +50,14 @@ export default function Checkout ({ customer }) {
           signal
         })
           .catch(error => console.log(`2nd fetch error: ${error}`))
-  
-        return () => controller.abort()
       }
       catch (error) {
         console.log(`2nd Stripe API Error: ${error}`)
       }
     }
     createOrder()
+
+    return () => controller.abort()
   }, [])
 
   const appearance = {

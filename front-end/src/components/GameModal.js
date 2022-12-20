@@ -69,7 +69,7 @@ export default function GameModal() {
             <div className='modal-header'>
               {
                 openModal.primary_images.images
-                  ? <Carousel carouselArray={openModal.primary_images.images} className="modal-img" />
+                  ? <div className='modal-carousel'><Carousel carouselArray={openModal.primary_images.images} className="modal-img" /></div>
                   : null
               }
               <div className='modal-desc'>
