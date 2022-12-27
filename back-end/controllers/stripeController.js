@@ -2,25 +2,18 @@ require('dotenv').config()
 const stripe = require('stripe')(process.env.STRIPE_TEST_SK)
 const Product = require('../models/Products')
 
-const {  recieptDescription } = require('./cartFunctions')
+const { calculateOrderAmount, recieptDescription } = require('./cartFunctions')
 const { setCustomerOrder } = require('./ordersController')
 
 const stripeController = async (req, res) => {
     const { cart, customer } = req.body
-    
-    // const calculateOrderAmount = async (cart) => {
-    //     const totalArr = cart.map(async item => {
-    //         const product = await Product.findOne({ _id: item._id })
-    //         return Number(product.price * item.onOrder * 100)
-    //     })
-    //     console.log(await totalArr)
-    //     return totalArr.reduce((x, y) => x + y, 0)
-    // }
-    
+    const orderTotal = await calculateOrderAmount(cart)
+    console.log(await orderTotal)
     try {
-        // Create a PaymentIntent with the order amount and currency
+        
+        
         const paymentIntent = await stripe.paymentIntents.create({
-            amount: 2500,
+            amount: orderTotal,
             currency: "usd",
             description: recieptDescription(cart),
             receipt_email: customer.email,
