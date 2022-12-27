@@ -56,17 +56,17 @@
 
 @mixin responsive($breakpoint)
     @if ($breakpoint == xxlarge)
-        @media (min-width: 125em)  // 2000px / 16px = 125em
+        @media (min-width: 125em)
             @content
     @if ($breakpoint == xlarge)
-        @media (min-width: 90em)  // 1440px / 16px = 90em
+        @media (min-width: 90em)
             @content
     @if ($breakpoint == large)
-        @media (min-width: 62.5em)  // 1000px / 16px = 62.5em
+        @media (min-width: 62.5em)
             @content
     @if($breakpoint == medium)
-        @media (min-width: 50em)  // 800px / 16px = 50em
+        @media (min-width: 50em)
             @content
     @if($breakpoint == small)
-        @media (min-width: 37.5em)  // 600px / 16px = 37.5em
+        @media (min-width: 37.5em)
             @content

@@ -25,40 +25,21 @@ export default function Checkout ({ customer }) {
           ),
           signal
       })
-        .then(res => res.json())
-        .then(data => setClientSecret(data.clientSecret))
+        .then(async res => {
+          const { clientSecret } = await res.json()
+          console.log('checkout client secret ', clientSecret)
+          setClientSecret(clientSecret)
+        })
         .catch(error => {
           console.log(`Fetch Error: ${error}`)
         })
-      return () => controller.abort()
     }
     catch (error) {
       console.log(`Stripe API Error: ${error}`)
     }
-  }, [cart, customer])
-
-  useEffect(() => {
-    const controller = new AbortController()
-    const signal = controller.signal
-
-    async function createOrder() {
-      try {        
-        await fetch("http://localhost:5000/api/v1/orders", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ cart, customer, clientSecret }),
-          signal
-        })
-          .catch(error => console.log(`2nd fetch error: ${error}`))
-      }
-      catch (error) {
-        console.log(`2nd Stripe API Error: ${error}`)
-      }
-    }
-    createOrder()
 
     return () => controller.abort()
-  }, [])
+  }, [cart, customer])
 
   const appearance = {
     theme: 'stripe',
@@ -82,8 +63,3 @@ export default function Checkout ({ customer }) {
     </div>
   )
 }
-
-
-
-
-// npm install --save stripe @stripe/react-stripe-js @stripe/stripe-js

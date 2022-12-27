@@ -1,61 +1,65 @@
 const Orders = require('../models/Orders')
 const Product = require('../models/Products')
 let globalCart
+let globalCustomer
+let clientSecret
 
-const createOrder = async (req, res) => {
-    const { cart, customer, clientSecret } = await req.body
-
-    globalCart = cart
-
-    const abbvCart = await cart.map(item => (
+const setCustomerOrder = (cart, customer, clientSecret) => {
+    const abbvCart = cart.map(item => (
         {
             id: item._id,
             name: item.name,
             numPurchased: item.onOrder,
-            price: item.price
+            price: item.price,
+            inventory: item.inventory
         }
     ))
+    globalCart = abbvCart
+    globalCustomer = customer
+    clientSecret = clientSecret
+}
 
-    const order = await Orders.create({
-        customerInfo: customer,
-        itemsBought: await abbvCart,
-        paymentId: await clientSecret
+const createOrder = async () => {
+    await Orders.create({
+        customerInfo: globalCustomer,
+        itemsBought: globalCart,
+        paymentId: clientSecret
     })
+}
 
-    if (!order) throw new Error("We ain't got an order yet :( ")
+const updateInventory = () => {
+    globalCart.forEach(async (item) => {
+        const newInventory = item.inventory - item.numPurchased
 
-    res.status(200).json({ order })
+        const product = await Product.findOne({ _id: item.id })
+
+        if (!product) throw new Error("There ain't no product")
+
+        product.inventory = newInventory
+        product.successfulPurchase = true
+
+        await product.save()
+    })
 }
 
 // stripe listen --forward-to localhost:5000/api/v1/orders/hook
 const updateInventoryStripeHook = async (req, res) => {
     let event = req.body
 
-    // handle the event
     switch (event.type) {
         case 'payment_intent.created':
             console.log('payment intent created')
             break
+
         case 'payment_intent.succeeded':
             console.log('payment intent succeded')
+            console.log('da set cart: ', globalCart)
             break
+
         case 'charge.succeeded':
-            if (!globalCart) throw new Error('No items in cart')
-
-            globalCart.forEach(async (item) => {
-                const newInventory = item.inventory - item.onOrder
-
-                // update the db inventory for those cart items sold
-                const product = await Product.findOne({ _id: item._id })
-
-                if (!product) throw new Error("There ain't no product")
-
-                product.inventory = newInventory
-                product.successfulPurchase = true
-
-                await product.save()
-            })
-            res.status(200).json({ msg: `Inventory updated` })
+            createOrder()
+            updateInventory()
+            res.status(200).json({ msg: `Inventory & Orders updated` })
             break
 
         default:
@@ -106,6 +110,7 @@ const deleteOrder = async (req, res) => {
 }
 
 module.exports = {
+    setCustomerOrder,
     createOrder,
     updateInventoryStripeHook,
     getOrders,

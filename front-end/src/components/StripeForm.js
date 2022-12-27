@@ -1,8 +1,9 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import {
   PaymentElement,
   useStripe,
-  useElements
+  useElements,
+  CardElement
 } from "@stripe/react-stripe-js";
 
 export default function StripeForm({ customer }) {
@@ -24,6 +25,17 @@ export default function StripeForm({ customer }) {
     if (!clientSecret) {
       return;
     }
+
+    stripe.confirmCardPayment(clientSecret, {
+      payment_method: {
+        card: CardElement,
+        billing_details: {
+          name: customer.name,
+        }
+      }
+    })
+      .then(res => console.log('confirmCrdPayment res: ', res))
+      .catch(error => console.log('confirmCardPayment error: ', error))
 
     stripe.retrievePaymentIntent(clientSecret).then(({ paymentIntent }) => {
       switch (paymentIntent.status) {

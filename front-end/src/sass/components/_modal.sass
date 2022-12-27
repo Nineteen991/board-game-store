@@ -67,25 +67,30 @@
   padding-top: 2%
   display: grid
   grid-template-columns: repeat(auto-fit, minmax(25rem, 1fr))
-  grid-gap: 5rem
-  // grid-auto-flow: dense
+  // grid-gap: 5rem
+  grid-auto-flow: dense
 
 .modal-details-img
   width: 100%
 
 .modal-details-small
-  grid-column: span 1
-  min-width: 25rem
+  // grid-column: span 1
+  // max-width: 30%
 
 .modal-details-wide
-  grid-column: span 3
-  min-width: 25rem
+  // grid-column: span 3
+  max-width: 100%
+  // min-width: 25rem
+
+  @media (max-width: 125rem)
+    // grid-column: span 2
 
 .modal-details-big
-  grid-column: span 3
-  grid-row: span 2
+  // grid-column: span 3
+  // grid-row: span 2
   height: 100%
-  min-width: 25rem
+  max-width: 100%
+  // min-width: 25rem
 
 .modal-details-big img
   height: 90%

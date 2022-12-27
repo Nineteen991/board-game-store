@@ -25,8 +25,6 @@ export default function Navbar () {
           >
             <Link to='/' className='nav-links'>Home</Link>
             <Link to='/shop' className='nav-links'>Shop</Link>
-            <Link to='/events' className='nav-links'>Events</Link>
-            <Link to='/contact' className='nav-links'>Contact</Link>
             <Link to='/cart' className='nav-links'>Cart</Link>
           </div>
       }
