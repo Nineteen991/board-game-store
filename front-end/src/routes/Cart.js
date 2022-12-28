@@ -14,11 +14,11 @@ export default function Cart () {
   const { customer, checkoutForm } = useCustomer()
   const totals = []
 
-  const cartItemElements = cart.map(item => {
+  const cartItemElements = cart.map((item, index) => {
     const total = item.price * item.onOrder
     totals.push(total)
 
-    return <CartItem key={ item._id } item={ item } />
+    return <CartItem key={ index } item={ item } index={ index } />
   })
 
   const subtotal = totals.reduce((x, y) => x + y, 0)

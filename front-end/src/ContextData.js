@@ -37,8 +37,10 @@ function ContextProvider ({ children }) {
     // Cart
     const [cart, setCart] = useState([])
 
-    function removeFromCart(id) {
-        setCart(prev => prev.filter(item => item._id !== id))
+    function removeFromCart(index) {
+        const newCart = [...cart]
+        newCart.splice(index, 1)
+        setCart(newCart)
     }
 
     return (

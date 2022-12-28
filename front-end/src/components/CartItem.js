@@ -4,7 +4,7 @@ import useHover from '../hooks/useHover'
 import { Context } from '../ContextData'
 import { formatPrice } from '../util/formatPrice'
 
-export default function CartItem ({ item }) {
+export default function CartItem ({ item, index }) {
   const [hover, ref] = useHover()
   const { removeFromCart } = useContext(Context)
 
@@ -15,7 +15,7 @@ export default function CartItem ({ item }) {
     <div className="cart-item">
       <i 
         className={`ri-delete-bin-${ iconClassName }`}
-        onClick={ () => removeFromCart(item._id) }
+        onClick={ () => removeFromCart(index) }
         ref={ ref }
       ></i>
       <img 

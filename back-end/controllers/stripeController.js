@@ -1,16 +1,14 @@
 require('dotenv').config()
 const stripe = require('stripe')(process.env.STRIPE_TEST_SK)
-const Product = require('../models/Products')
 
 const { calculateOrderAmount, recieptDescription } = require('./cartFunctions')
 const { setCustomerOrder } = require('./ordersController')
 
 const stripeController = async (req, res) => {
     const { cart, customer } = req.body
-    const orderTotal = await calculateOrderAmount(cart)
-    console.log(await orderTotal)
+    
     try {
-        
+        const orderTotal = await calculateOrderAmount(cart)
         
         const paymentIntent = await stripe.paymentIntents.create({
             amount: orderTotal,
