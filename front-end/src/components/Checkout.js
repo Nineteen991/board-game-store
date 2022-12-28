@@ -16,7 +16,7 @@ export default function Checkout ({ customer }) {
     const signal = controller.signal
 
     try {
-      // Create PaymentIntent as soon as the page loads
+      // Create PaymentIntent as soon as the component loads
       fetch("http://localhost:5000/api/v1/stripe", {
           method: "POST",
           headers: { "Content-Type": "application/json" },

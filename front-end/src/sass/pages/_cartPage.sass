@@ -1,6 +1,7 @@
 .cart
   display: grid
-  grid-template-columns: 1fr 1fr
+  // grid-template-columns: 1fr 1fr
+  grid-template-columns: repeat(auto-fit, minmax(35rem, 1fr))
   grid-template-rows: 10rem 1fr 2fr
   padding: 2.5% 5%
 
@@ -19,8 +20,14 @@
 .cart-contents
   grid-column: 1 / 2
   grid-row: 2 / -1
-  padding: 0 5rem
+  padding: 0 1rem 5rem
   @include flex-column
+
+  @include responsive(large)
+    padding: 0 5rem
+
+  @include responsive(xlarge)
+    grid-column: 1 / 3
 
 .totals-container
   align-self: flex-end
@@ -28,6 +35,9 @@
 .totals-div
   display: grid
   grid-template-columns: 10rem 10rem
+
+.totals-div:not(:last-of-type)
+  padding-bottom: 1rem
 
 .totals
   @include navbar-gradient

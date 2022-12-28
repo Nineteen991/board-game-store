@@ -10,6 +10,7 @@ import useCustomer from '../hooks/useCustomer'
 
 export default function Cart () {
   const [toggleStripe, setToggleStripe] = useState(false)
+  const [storePickup, setStorePickup] = useState(true)
   const { cart } = useContext(Context)
   const { customer, checkoutForm } = useCustomer()
   const totals = []
@@ -21,8 +22,10 @@ export default function Cart () {
     return <CartItem key={ index } item={ item } index={ index } />
   })
 
+  const shipping = !storePickup ? 10 : 0
+
   const subtotal = totals.reduce((x, y) => x + y, 0)
-  const tax = subtotal * .0925
+  const tax = subtotal * .0925 + shipping
   const total = subtotal + tax
 
   return (
@@ -38,6 +41,14 @@ export default function Cart () {
                   <p className="totals">Subtotal:</p>
                   <p className="totals">{ formatPrice(subtotal) }</p>
                 </div>
+                {
+                  !storePickup 
+                    ? <div className="totals-div">
+                        <p className="totals">Flat Shipping:</p>
+                        <p className="totals">{ formatPrice(10) }</p>
+                      </div>
+                    : null
+                }
                 <div className="totals-div">
                   <p className="totals">Tax:</p>
                   <p className="totals">{ formatPrice(tax) }</p>
@@ -63,6 +74,8 @@ export default function Cart () {
         customer={customer} 
         checkoutForm={checkoutForm}
         setToggleStripe={setToggleStripe}
+        storePickup={storePickup}
+        setStorePickup={setStorePickup}
       />
 
       {

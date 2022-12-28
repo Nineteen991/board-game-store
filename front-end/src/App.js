@@ -3,8 +3,6 @@ import { Link, Routes, Route } from 'react-router-dom'
 
 import Navbar from './components/Navbar'
 import HomePage from './routes/HomePage'
-import EventsPage from './routes/EventsPage'
-import ContactPage from './routes/ContactPage'
 import Cart from './routes/Cart'
 import Store from './routes/Store'
 import Complete from './routes/Complete'
@@ -31,8 +29,6 @@ export default function App () {
 
       <Routes>
         <Route path='/' element={ <HomePage /> } />
-        <Route path='/events' element={ <EventsPage /> } />
-        <Route path='/contact' element={ <ContactPage /> } />
         <Route path='/cart' element={ <Cart /> } />
         <Route path='/shop' element={ <Store /> } />
         <Route path='/complete' element={ <Complete /> } />

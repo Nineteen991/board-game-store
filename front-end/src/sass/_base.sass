@@ -9,6 +9,9 @@ html
     box-sizing: border-box
     font-size: 62.5%
 
+    @media (min-width: 3500px)
+        font-size: 187.5%
+
 body
     width: 100%
     /* fallback for old browsers */
@@ -24,5 +27,6 @@ a:link, a:visited, a:hover, a:active
 
 .container
     min-height: 100vh
-
-    @include flex-column
+    width: 100%
+    display: flex
+    flex-direction: column

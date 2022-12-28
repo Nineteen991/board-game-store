@@ -1,7 +1,6 @@
 .cart-item
   display: flex
   align-items: center
-  // clip-path: polygon(5% 0, 100% 0, 100% 80%, 5% 100%, 0 100%, 0 20%)
   @include font-oswald
   width: 100%
 
@@ -9,18 +8,28 @@
   margin-bottom: 2rem
 
 .ri-delete-bin-line, .ri-delete-bin-fill
-  font-size: 5rem
+  font-size: 2.5rem
   cursor: pointer
   @include navbar-gradient
   @include titleSizeAndClip
-  margin-right: 5rem
+  margin-right: 2.5rem
+
+  @include responsive(xlarge)
+    font-size: 5rem
+    margin-right: 5rem
 
 .cart-img
-  width: 20rem
+  width: 10rem
   margin-right: auto
 
+  @include responsive(xlarge)
+    width: 20rem
+
 .cart-item-price
-  padding: 0 2rem
+  padding: 0 1rem
   font-size: 2rem
   @include navbar-gradient
   @include titleSizeAndClip
+
+  @include responsive(xlarge)
+    padding: 0 2rem

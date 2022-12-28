@@ -55,6 +55,9 @@
         @content
 
 @mixin responsive($breakpoint)
+    @if ($breakpoint == 4klarge)
+        @media (min-width: 350em)
+            @content
     @if ($breakpoint == xxlarge)
         @media (min-width: 125em)
             @content

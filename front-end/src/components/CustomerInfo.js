@@ -1,8 +1,5 @@
-import { useState } from 'react'
-
 export default function CustomerInfo (props) {
-  const { customer, checkoutForm, setToggleStripe } = props
-  const [storePickup, setStorePickup] = useState(true)
+  const { customer, checkoutForm, setToggleStripe, storePickup, setStorePickup } = props
 
   function renderStripe(e) {
     e.preventDefault()

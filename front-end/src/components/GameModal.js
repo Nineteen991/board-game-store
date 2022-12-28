@@ -69,7 +69,11 @@ export default function GameModal() {
             <div className='modal-header'>
               {
                 openModal.primary_images.images
-                  ? <div className='modal-carousel'><Carousel carouselArray={openModal.primary_images.images} className="modal-img" /></div>
+                  ? <div className='modal-carousel'>
+                      <Carousel 
+                        carouselArray={openModal.primary_images.images} className="modal-img"
+                      />
+                    </div>
                   : null
               }
               <div className='modal-desc'>
@@ -84,17 +88,17 @@ export default function GameModal() {
                     }
                   </p>
                   <QuantityInput
-                    inventory={openModal.inventory}
-                    item={openModal}
-                    count={count}
+                    inventory={ openModal.inventory }
+                    item={ openModal }
+                    count={ count }
                     setCount={setCount}
                     makeSureItsANumber={makeSureItsANumber}
                   />
                   <button 
-                    className='add-to-cart' 
+                    className='add-to-cart'
                     onClick={ addToCart }
                     disabled={ count === 0 }
-                    style={ count === 0 ? {opacity: .5} : {}}
+                    style={ count === 0 ? {opacity: .5} : {} }
                   >
                     Add to cart
                   </button>
@@ -104,7 +108,7 @@ export default function GameModal() {
             </div>
 
             <div className='modal-details'>
-              {renderSecondaryDetails()}
+              { renderSecondaryDetails() }
             </div>
 
           </div>
