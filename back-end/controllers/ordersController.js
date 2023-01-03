@@ -27,8 +27,8 @@ const createOrder = async () => {
     })
 }
 
-const updateInventory = () => {
-    globalCart.forEach(async (item) => {
+const updateInventory = async () => {
+    await globalCart.forEach(async (item) => {
         const newInventory = item.inventory - item.numPurchased
 
         const product = await Product.findOne({ _id: item.id })
@@ -37,7 +37,7 @@ const updateInventory = () => {
 
         product.inventory = newInventory
         product.successfulPurchase = true
-
+        console.log(product.name)
         await product.save()
     })
 }

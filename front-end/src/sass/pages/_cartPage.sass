@@ -5,6 +5,9 @@
   grid-template-rows: 10rem 1fr 2fr
   padding: 2.5% 5%
 
+  @include responsive(xlarge)
+    grid-template-columns: 1fr 1fr 1fr 1fr
+
 .cart-title
   grid-column: 1 / -1
   grid-row: 1 / 2
@@ -46,8 +49,12 @@
   padding: 0 2rem
 
 .buy-stuff
+  grid-column: 1 / 2
   display: grid
   place-content: center
+
+  @include responsive(xlarge)
+    grid-column: 1 / 3
 
 .buy-stuff-btn
   @include buttons

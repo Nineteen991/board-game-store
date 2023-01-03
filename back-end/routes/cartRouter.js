@@ -1,9 +1,9 @@
 const express = require('express')
 const router = express.Router()
 
-const { stripeController } = require('../controllers/stripeController')
+const calculateOrderAmount = require('../controllers/calculateOrderAmount')
 
 router.route('/')
-    .post(stripeController)
+  .post(calculateOrderAmount)
 
 module.exports = router

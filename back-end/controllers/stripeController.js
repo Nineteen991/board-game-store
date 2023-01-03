@@ -1,19 +1,24 @@
 require('dotenv').config()
 const stripe = require('stripe')(process.env.STRIPE_TEST_SK)
 
-const { calculateOrderAmount, recieptDescription } = require('./cartFunctions')
 const { setCustomerOrder } = require('./ordersController')
+
+let cartTotal = 0
+let receiptDesc = ''
+
+const getPriceAndReceipt = (total, receipt) => {
+    cartTotal = total
+    receiptDesc = receipt
+}
 
 const stripeController = async (req, res) => {
     const { cart, customer } = req.body
-    
+
     try {
-        const orderTotal = await calculateOrderAmount(cart)
-        
         const paymentIntent = await stripe.paymentIntents.create({
-            amount: orderTotal,
+            amount: cartTotal,
             currency: "usd",
-            description: recieptDescription(cart),
+            description: receiptDesc,
             receipt_email: customer.email,
             payment_method_types: ['card'],
             // automatic_payment_methods: {
@@ -39,4 +44,4 @@ const stripeController = async (req, res) => {
     }
 }
 
-module.exports = stripeController
+module.exports = { stripeController, getPriceAndReceipt }

@@ -1,15 +1,13 @@
-import { useState, useEffect, useContext } from 'react'
+import { useState, useEffect } from 'react'
 import { loadStripe } from "@stripe/stripe-js";
 import { Elements } from "@stripe/react-stripe-js";
 
 import StripeForm from "./StripeForm"
-import { Context } from '../ContextData'
 
 const stripePromise = loadStripe('pk_test_vt8ZyUqCunXogiPG4j8GHwgB00P0qTWPZN')
 
-export default function Checkout ({ customer }) {
+export default function Checkout ({ cart, customer }) {
   const [clientSecret, setClientSecret] = useState("")
-  const { cart } = useContext(Context)
 
   useEffect(() => {
     const controller = new AbortController()
@@ -27,7 +25,6 @@ export default function Checkout ({ customer }) {
       })
         .then(async res => {
           const { clientSecret } = await res.json()
-          console.log('checkout client secret ', clientSecret)
           setClientSecret(clientSecret)
         })
         .catch(error => {

@@ -4,10 +4,12 @@ import { Context } from '../ContextData'
 import QuantityInput from './QuantityInput'
 import Carousel from './Carousel'
 import { useCount } from '../hooks/useCount'
+import { useAddedToCart } from '../hooks/useAddedToCart'
 
 export default function GameModal() {
   const { openModal, setOpenModal, setCart } = useContext(Context)
   const { count, setCount, makeSureItsANumber } = useCount()
+  const { added, setAdded } = useAddedToCart()
 
   function renderPrimaryDetails() {
     const details = openModal.detailed_desc.details.map(
@@ -46,11 +48,13 @@ export default function GameModal() {
   }
 
   function addToCart () {
+    setAdded('Yay! In cart')
     setCart(prev => [...prev, order])
   }
 
   function nixModelResetCount() {
     setCount(0)
+    setAdded('Add to cart')
     setOpenModal(null)
   }
 
@@ -80,7 +84,7 @@ export default function GameModal() {
                 {renderPrimaryDetails()}
 
                 <div className='inventory-cart'>
-                  <p className="quantity-p in-stock">
+                  <p className="in-stock">
                     {
                       openModal.inventory
                         ? `${openModal.inventory} in Stock`
@@ -91,16 +95,17 @@ export default function GameModal() {
                     inventory={ openModal.inventory }
                     item={ openModal }
                     count={ count }
-                    setCount={setCount}
-                    makeSureItsANumber={makeSureItsANumber}
+                    setCount={ setCount }
+                    makeSureItsANumber={ makeSureItsANumber }
                   />
+                  <p style={{color: '#f12711'}}>${openModal.price}</p>
                   <button 
                     className='add-to-cart'
                     onClick={ addToCart }
                     disabled={ count === 0 }
-                    style={ count === 0 ? {opacity: .5} : {} }
+                    style={ count === 0 ? { opacity: .5 } : {} }
                   >
-                    Add to cart
+                    { added }
                   </button>
                 </div>
 

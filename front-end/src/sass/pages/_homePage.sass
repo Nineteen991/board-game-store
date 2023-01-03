@@ -4,7 +4,7 @@
 .carousel-div
     height: 90vh
     position: relative
-    clip-path: polygon(0 0, 100% 0, 100% 95%, 95% 100%, 5% 100%, 0 95%)
+    clip-path: polygon(100% 0, 100% 85%, 0 100%, 0 15%)
     @include header-carousel-hv
     
 .shop-link
@@ -33,6 +33,7 @@
         justify-content: center
 
 .about-info
+    @include hidden
     @include flex-column
     @include centerVerticalAndHorizonal
     margin-right: 2rem
@@ -54,8 +55,35 @@
     padding-bottom: 3rem
 
 .about-img
+    @include hidden
     width: 40%
-    clip-path: polygon(12.5% 0, 100% 0, 100% 90%, 87.5% 100%, 0 100%, 0 10%)
+    border-radius: 50%
+    // clip-path: polygon(12.5% 0, 100% 0, 100% 90%, 87.5% 100%, 0 100%, 0 10%)
     
     @media (max-width: $mediaWidth)
         width: 90%
+// .hidden
+//     @include hidden
+
+.active
+    opacity: 1
+
+.fade-left-1s
+    @include fade-in(slide-in, 1s, ease-in, 1)
+    @include keyframes(slide-in)
+        0%
+            transform: translateX(-10rem)
+            opacity: 0
+        100%
+            transform: translateX(0)
+            opacity: 1
+
+.fade-left-1-5s
+    @include fade-in(slide-in, 1.5s, ease-in, 1)
+    @include keyframes(slide-in)
+        0%
+            transform: translateX(-10rem)
+            opacity: 0
+        100%
+            transform: translateX(0)
+            opacity: 1

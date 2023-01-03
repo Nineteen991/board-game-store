@@ -1,4 +1,4 @@
-import { useContext, useState } from "react"
+import { useContext, useState, useEffect } from "react"
 import { Link } from 'react-router-dom'
 
 import { Context } from '../ContextData'
@@ -21,6 +21,26 @@ export default function Cart () {
 
     return <CartItem key={ index } item={ item } index={ index } />
   })
+
+  useEffect(() => {
+    const controller = new AbortController()
+    const signal = controller.signal
+
+    try {
+      fetch("http://localhost:5000/api/v1/cart", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ cart }),
+        signal
+      })
+        .catch(err => console.error(err))
+    }
+    catch (err) {
+      console.error(err)
+    }
+
+    return () => controller.abort()
+  }, [cart, customer])
 
   const shipping = !storePickup ? 10 : 0
 
@@ -80,7 +100,7 @@ export default function Cart () {
 
       {
         toggleStripe && cart.length > 0
-          ? <Checkout customer={customer}/>
+          ? <Checkout customer={customer} cart={cart} />
           : null
       }
 
