@@ -1,0 +1,32 @@
+.active
+    opacity: 1
+
+.fade-left-1s
+    @include fade-in(slide-in, 1s, ease-in, 1)
+    @include keyframes(slide-in)
+        0%
+            transform: translateX(-10rem)
+            opacity: 0
+        100%
+            transform: translateX(0)
+            opacity: 1
+
+.fade-left-1-5s
+    @include fade-in(slide-in, 1.5s, ease-in, 1)
+    @include keyframes(slide-in)
+        0%
+            transform: translateX(-10rem)
+            opacity: 0
+        100%
+            transform: translateX(0)
+            opacity: 1
+
+.fade-left-2s
+    @include fade-in(slide-in, 2s, ease-in, 1)
+    @include keyframes(slide-in)
+        0%
+            transform: translateX(-10rem)
+            opacity: 0
+        100%
+            transform: translateX(0)
+            opacity: 1

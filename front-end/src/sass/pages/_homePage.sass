@@ -33,7 +33,6 @@
         justify-content: center
 
 .about-info
-    @include hidden
     @include flex-column
     @include centerVerticalAndHorizonal
     margin-right: 2rem
@@ -44,6 +43,7 @@
 .about-title
     @include navbar-gradient
     @include titleSizeAndClip
+    @include hidden
     font-size: 5rem
     text-transform: uppercase
     padding-bottom: 2rem
@@ -53,6 +53,7 @@
     color: white
     font-size: 3rem
     padding-bottom: 3rem
+    @include hidden
 
 .about-img
     @include hidden
@@ -62,28 +63,3 @@
     
     @media (max-width: $mediaWidth)
         width: 90%
-// .hidden
-//     @include hidden
-
-.active
-    opacity: 1
-
-.fade-left-1s
-    @include fade-in(slide-in, 1s, ease-in, 1)
-    @include keyframes(slide-in)
-        0%
-            transform: translateX(-10rem)
-            opacity: 0
-        100%
-            transform: translateX(0)
-            opacity: 1
-
-.fade-left-1-5s
-    @include fade-in(slide-in, 1.5s, ease-in, 1)
-    @include keyframes(slide-in)
-        0%
-            transform: translateX(-10rem)
-            opacity: 0
-        100%
-            transform: translateX(0)
-            opacity: 1

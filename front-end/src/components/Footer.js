@@ -1,4 +1,15 @@
+import { useRef, useEffect } from 'react'
+
 export default function Footer () {
+  const ref = useRef(null)
+
+  useEffect(() => {
+    const current = ref.current
+    const observer = new IntersectionObserver(elements => {
+      
+    })
+  }, [])
+
   return (
     <div className="footer">
 
