@@ -1,38 +1,27 @@
-import { useContext } from 'react'
+import { useRef, useEffect } from 'react'
 
-import { Context } from '../ContextData'
+import Products from '../components/Products'
 import GameModal from '../components/GameModal'
 import Footer from '../components/Footer'
+import { useIsVisible } from '../hooks/useIsVisible'
 
 export default function Store () {
-  const { apiData, setOpenModal } = useContext(Context)
+  
+  const { isVisible, setIsVisible } = useIsVisible()
+  const ref = useRef(null)
 
-  const productCards = apiData.map(product => (
-    <div 
-      className='product-card' 
-      key={ product._id }
-      // onClick send product info to the modal
-      onClick={ () => setOpenModal(product) }
-    >
-      <img 
-        src={ product.primary_images.images[0] } 
-        className='product-img' 
-        alt={ product.name }
-        loading='lazy'
-      />
-      <div className='product-info'>
-        <div className='product-header'>
-          <h3 className='product-name'>{ product.name }</h3>
-          <p className='product-price'>
-            { product.price.toLocaleString(
-              "en-US", {style: "currency", currency: "USD"}
-            ) }
-          </p>
-        </div>
-        <p className='product-desc'>{ product.description }</p>
-      </div>
-    </div>
-  ))
+  useEffect(() => {
+    const current = ref.current
+    const observer = new IntersectionObserver(elements => {
+      if(elements[0].isIntersecting) {
+        setIsVisible(true)
+        observer.unobserve(current)
+      }
+    })
+    observer.observe(current)
+
+    return () => observer.unobserve(current)
+  }, [])
 
   return (
     <>
@@ -45,8 +34,11 @@ export default function Store () {
         <h2 className='store-tagline-2'>
           Don't see the game you want, we'll get it for you
         </h2>
-        <div className='products'>
-          { productCards }
+        <div 
+          className={`products ${isVisible ? 'fade-left-1s active' : ''}`} 
+          ref={ ref }
+        >
+          <Products />
         </div>
         <Footer />
       </div>

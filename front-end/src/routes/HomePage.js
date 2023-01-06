@@ -1,13 +1,14 @@
-import { useState, useRef, useEffect } from 'react'
+import { useRef, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 
 import Carousel from '../components/Carousel'
 import { headerCarousel, captions } from '../util/heroData'
 import Footer from '../components/Footer'
 import storeFront from '../images/storefront.webp'
+import { useIsVisible } from '../hooks/useIsVisible'
 
 export default function HomePage() {
-  const [isVisible, setIsVisible] = useState(false)
+  const { isVisible, setIsVisible } = useIsVisible()
   const ref = useRef(null)
 
   useEffect(() => {

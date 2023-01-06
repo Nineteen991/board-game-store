@@ -98,7 +98,7 @@ export default function GameModal() {
                     setCount={ setCount }
                     makeSureItsANumber={ makeSureItsANumber }
                   />
-                  <p style={{color: '#f12711'}}>${openModal.price}</p>
+                  <p style={{color: '#f12711'}}>${openModal.price} each</p>
                   <button 
                     className='add-to-cart'
                     onClick={ addToCart }
