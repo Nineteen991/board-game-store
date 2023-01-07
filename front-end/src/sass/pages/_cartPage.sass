@@ -3,7 +3,13 @@
   // grid-template-columns: 1fr 1fr
   grid-template-columns: repeat(auto-fit, minmax(35rem, 1fr))
   grid-template-rows: 10rem 1fr 2fr
-  padding: 2.5% 5%
+  padding: 30% 5%
+
+  @include responsive(small)
+    padding: 20% 5%
+
+  @include responsive(medium)
+    padding: 5%
 
   @include responsive(xlarge)
     grid-template-columns: 1fr 1fr 1fr 1fr
@@ -16,9 +22,6 @@
   font-size: 5rem
   text-align: center
   margin-bottom: 5rem
-
-// .cart > div
-//   margin-bottom: 5rem
 
 .cart-contents
   grid-column: 1 / 2

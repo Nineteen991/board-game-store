@@ -8,18 +8,6 @@
   justify-content: flex-start
   align-self: flex-start
 
-  @include responsive(small)
-    width: 75%
-
-  @include responsive(medium)
-    width: 50%
-
-  @include responsive(xlarge)
-    width: 30%
-
-  @include responsive(xxlarge)
-    width: 22.5%
-
 .nav-burger, .change
   padding: 2rem
   margin: 2rem
@@ -43,24 +31,51 @@
 .change .line3
   transform: translate(0, -1.1rem) rotate(45deg)
 
-.nav-menu
-  height: 100vh
+.nav-menu-border
+  height: 50vh
   width: 100%
   position: absolute
   z-index: 10
-  background: #2193b0
-  clip-path: polygon(0 0, 55% 0, 100% 100%, 0 100%)
-  padding: 2rem 2rem 1rem
+  margin-top: 9rem
+  clip-path: polygon(100% 0, 100% 85%, 0 100%, 0 15%)
+  background: #f12711
+  background: -webkit-linear-gradient(to left, #f5af19, #f12711)
+  background: linear-gradient(to left, #f5af19, #f12711)
+  padding: 1rem 0
   display: flex
   flex-direction: column
-  justify-content: flex-end
+  justify-content: center
+
+.nav-menu
+  z-index: 10
+  height: 100%
+  @include background
+  clip-path: polygon(100% 0, 100% 85%, 0 100%, 0 15%)
+  display: flex
+  flex-direction: column
+  justify-content: flex-start
   align-items: flex-start
+  padding: 3.5rem 0 0
+
+  @media(min-width: 45rem)
+    padding: 4rem 0 0
+
+  @include responsive(xxlarge)
+    padding: 5.5rem 0 0
 
 .nav-links
   @include navbar-gradient
   @include titleSizeAndClip
   font-size: 8rem
+  transform: rotate(-7deg)
+  padding-left: 2rem
 
   &:hover
     margin-left: 2rem
-    transition: all 0.4s ease-in-out
+    transition: all .5s ease-in-out
+
+  @media(min-width: 45rem)
+    transform: rotate(-3deg)
+
+  @media(min-width: 90rem)
+    transform: rotate(-2deg)

@@ -19,13 +19,15 @@ export default function Navbar () {
       {/* popout menu */}
       {
         toggleNavbar &&
-          <div 
-            className='nav-menu'
-            onClick={ x => setToggleNavbar(prev => !prev) }
-          >
-            <Link to='/' className='nav-links'>Home</Link>
-            <Link to='/shop' className='nav-links'>Shop</Link>
-            <Link to='/cart' className='nav-links'>Cart</Link>
+          <div className='nav-menu-border'>
+            <div 
+              className='nav-menu'
+              onClick={ x => setToggleNavbar(prev => !prev) }
+            >
+              <Link to='/' className='nav-links'>Home</Link>
+              <Link to='/shop' className='nav-links'>Shop</Link>
+              <Link to='/cart' className='nav-links'>Cart</Link>
+            </div>
           </div>
       }
     </nav>

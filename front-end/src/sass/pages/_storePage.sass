@@ -5,11 +5,16 @@
     @media (max-width: 50rem)
         padding-top: 15%
 
+.store-tagline
+    padding: 4rem 0 2rem
+
+    @include responsive(small)
+        padding: 3rem 0 2rem
+
 .store-tagline, .store-tagline-2
     @include navbar-gradient
     @include titleSizeAndClip
     font-size: 5rem
-    // text-transform: uppercase
     text-align: center
 
 .store-tagline-2
@@ -35,6 +40,11 @@
     clip-path: polygon(12.5% 0, 100% 0, 100% 90%, 87.5% 100%, 0 100%, 0 10%)
     cursor: pointer
     display: flex
+    
+    &:hover
+        margin-top: 0
+        margin-bottom: 1rem
+        box-shadow: 0 1rem 2rem 0 black
 
 .product-img
     max-width: 60%
