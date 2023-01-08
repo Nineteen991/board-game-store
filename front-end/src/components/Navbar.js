@@ -9,7 +9,7 @@ export default function Navbar () {
       {/* menu icon */}
       <div
         className={ `${ toggleNavbar ? "change" : "nav-burger" }` }
-        onClick={ x => setToggleNavbar(prev => !prev) }
+        onClick={ () => setToggleNavbar(prev => !prev) }
       >
         <div className='line1'></div>
         <div className='line2'></div>
