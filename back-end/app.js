@@ -5,6 +5,7 @@ require('dotenv').config()
 const fileUpload = require('express-fileupload') 
 const bodyParser = require('body-parser') 
 const cloudinary = require('cloudinary') 
+const helmet = require('helmet')
 
 const app = express()
 
@@ -16,6 +17,7 @@ app.use(cors())
 app.use(express.json())
 app.use(bodyParser.json({ limit: "30mb", extended: true }))
 app.use(bodyParser.urlencoded({ limit: "30mb", extended: true }))
+app.use(helmet())
 
 app.use(express.static('/public'))
 
